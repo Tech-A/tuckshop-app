@@ -9,6 +9,7 @@ import styles from './src/styles';
 import { useState, useEffect } from "react";
 import { db1 } from './src/firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
+import MenuScreen from './src/components/MenuScreen';
 
 
 
@@ -63,32 +64,32 @@ function HomeScreen({ navigation }) {
 
 
 
-function MenuScreen({ navigation }) {
-  const [menu, setMenu] = useState([]);
-  const menuCollectionRef = collection(db1, "menu");
+// function MenuScreen({ navigation }) {
+//   const [menu, setMenu] = useState([]);
+//   const menuCollectionRef = collection(db1, "menu");
 
-  useEffect(() => {
-    const getMenu = async () => {
-      const data = await getDocs(menuCollectionRef);
-      setMenu(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+//   useEffect(() => {
+//     const getMenu = async () => {
+//       const data = await getDocs(menuCollectionRef);
+//       setMenu(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+//     };
 
-    getMenu();
-  }, []);
-return (
-  <View style={styles.App}> 
-    {menu.map((menu) => { 
-      return (
+//     getMenu();
+//   }, []);
+// return (
+//   <View style={styles.App}> 
+//     {menu.map((menu) => { 
+//       return (
     
-      <View>
-        <Text>Food: {menu.food}</Text>
-        <Text>Cost: {menu.cost}</Text>
-      </View>
-      );
-    })} 
-    </View>
-    );
-}
+//       <View>
+//         <Text>Food: {menu.food}</Text>
+//         <Text>Cost: {menu.cost}</Text>
+//       </View>
+//       );
+//     })} 
+//     </View>
+//     );
+// }
 
   
   

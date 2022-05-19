@@ -26,7 +26,7 @@ export default StyleSheet.create({
   div3: {
     justifyContent: 'flex-end',
     width: '100%',
-    alignItems: 'left',
+    alignItems: 'flex-start',
     padding: 20,
     textAlign: 'center',
   },
