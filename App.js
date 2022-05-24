@@ -13,7 +13,6 @@ import MenuScreen from './src/components/MenuScreen';
 
 
 
-
 function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
@@ -28,8 +27,6 @@ function HomeScreen({ navigation }) {
 
 
      </View>
-     <View style={styles.container2}>
-        
    <View style={styles.div2}>
    <TouchableOpacity
    style={styles.button}
@@ -39,7 +36,7 @@ function HomeScreen({ navigation }) {
     
    <TouchableOpacity
    style={styles.button}
-   onPress={() => navigation.navigate('Preorder')}>
+   onPress={() => navigation.navigate('Login')}>
  <Text style={styles.menu}>Preorder</Text>
    </TouchableOpacity>
  
@@ -48,14 +45,6 @@ function HomeScreen({ navigation }) {
    onPress={() => navigation.navigate('Info')}>
  <Text style={styles.menu}>Information</Text>
    </TouchableOpacity>
- </View>
-
-<View style={styles.div3}>
-   <Text style={styles.welcome}>Welcome to the Marist College Tuckshop! </Text>
-  <Text style={styles.welcome}> The Tuckshop is open everyday in Break 1 and 2. Lorem ipsum ... Click updates for more information.</Text>
-  <Text style={styles.welcome}> You can also check out the Menu or Preorder now!</Text>
- </View>
- 
  </View>
    </SafeAreaView>
   );
@@ -96,29 +85,29 @@ function HomeScreen({ navigation }) {
   
 
 
-function ChoicesScreen({ navigation }) {
-  return ( 
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 25, padding: 20, textAlign:'center' }}>How would you like to preorder?</Text>
-      <TouchableOpacity
-   style={styles.choicesbutton}
-   onPress={() => navigation.navigate('Login')}>
- <Text style={styles.choicestext}>New/Returning customer</Text>
- <Text style={styles.choicessubtext}>Save your login details and preorder</Text>
-   </TouchableOpacity>
+// function ChoicesScreen({ navigation }) {
+//   return ( 
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text style={{ fontSize: 25, padding: 20, textAlign:'center' }}>How would you like to preorder?</Text>
+//       <TouchableOpacity
+//    style={styles.choicesbutton}
+//    onPress={() => navigation.navigate('Login')}>
+//  <Text style={styles.choicestext}>New/Returning customer</Text>
+//  <Text style={styles.choicessubtext}>Save your login details and preorder</Text>
+//    </TouchableOpacity>
 
-   <TouchableOpacity
-   style={styles.choicesbutton}
-   onPress={() => navigation.navigate('Guest')}>
- <Text style={styles.choicestext}>One-time customer</Text>
- <Text style={styles.choicessubtext}>Preorder as guest</Text>
-   </TouchableOpacity>
-<Text></Text>
+//    <TouchableOpacity
+//    style={styles.choicesbutton}
+//    onPress={() => navigation.navigate('Guest')}>
+//  <Text style={styles.choicestext}>One-time customer</Text>
+//  <Text style={styles.choicessubtext}>Preorder as guest</Text>
+//    </TouchableOpacity>
+// <Text></Text>
 
-      <Button title="Back" onPress={() => navigation.navigate('Home')} />
-    </View>
-  );
-}
+//       <Button title="Back" onPress={() => navigation.navigate('Home')} />
+//     </View>
+//   );
+// }
 
 
 
@@ -181,15 +170,15 @@ function LoginScreen({ navigation }) {
 
 
 
-function GuestScreen({ navigation }) {
-  return ( 
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Fill out this form </Text>
-      <Text></Text>
-      <Button title="Home" onPress={() => navigation.navigate('Home')} />
-    </View>
-  );
-}
+// function GuestScreen({ navigation }) {
+//   return ( 
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Fill out this form </Text>
+//       <Text></Text>
+//       <Button title="Home" onPress={() => navigation.navigate('Home')} />
+//     </View>
+//   );
+// }
 
 
 
@@ -203,10 +192,10 @@ function App() {
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="Preorder" component={ChoicesScreen} />
+        {/* <Stack.Screen name="Preorder" component={ChoicesScreen} /> */}
         <Stack.Screen name="Info" component={InfoScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Guest" component={GuestScreen} />
+        {/* <Stack.Screen name="Guest" component={GuestScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
