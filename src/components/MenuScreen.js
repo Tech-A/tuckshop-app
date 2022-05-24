@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native';
 import { db1 } from '../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
-import globalStyles from '../styles';
+import styles from '../styles';
+import { Card } from 'react-native-elements';
+import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    button: {
-        width: '25%',
-
-    }
-})
 
 export default function MenuScreen({ navigation }) {
     const [currentTab, setCurrentTab] = useState('all');
     const [menu, setMenu] = useState({
         hotFood: [],
         drinks: [],
+        sweets: [],
         all: [],
     });
     const menuCollectionRef = collection(db1, "menu");
@@ -29,6 +24,7 @@ export default function MenuScreen({ navigation }) {
         const menuItems = {
             hotFood: [],
             drinks: [],
+            sweets: [],
             all: [],
         };
 
@@ -42,6 +38,12 @@ export default function MenuScreen({ navigation }) {
 
             if (doc.category === 'drinks') {
                 menuItems.drinks.push({
+                    ...doc.data(), 
+                    id: doc.id 
+                });
+            }
+            if (doc.category === 'sweets') {
+                menuItems.sweets.push({
                     ...doc.data(), 
                     id: doc.id 
                 });
@@ -71,38 +73,71 @@ export default function MenuScreen({ navigation }) {
         currentItems = menu.hotFood;
     }
 
+    if (currentTab === 'drinks') {
+        currentItems = menu.drinks;
+    }
+
+    if (currentTab === 'sweets') {
+        currentItems = menu.sweets;
+    }
+
   return (
       <>
-      <View>
-          <Button 
-            title="All"
-            style={globalStyles.button} 
+      <ScrollView>
+<SafeAreaView>
+          <View style={styles.menutitlecontainer}> 
+              <Text style={styles.menutitle}>Menu</Text>
+          </View>
+
+      <View style={styles.tabcontainer}>
+          <TouchableOpacity
+          title="all"
+            style={styles.tab} 
             onPress={() => setCurrentTab('all')}
             >
-            All
-        </Button>
-        <Button 
-            title="Hot food"
-            style={globalStyles.button}
+                <Text>All</Text>
+            
+        </TouchableOpacity>
+        <TouchableOpacity 
+            title="hotFood"
+            style={styles.tab} 
             onPress={() => setCurrentTab('hotFood')}
             >
-                Hot food
-        </Button>
+                <Text>Hot Food</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+            title="drinks"
+            style={styles.tab} 
+            onPress={() => setCurrentTab('drinks')}
+            >
+                <Text>Drinks</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+            title="sweets"
+            style={styles.tab} 
+            onPress={() => setCurrentTab('sweets')}
+            >
+                <Text>Sweets</Text>
+        </TouchableOpacity>
+
       </View>
-        <View style={styles.container}> 
+        <View style={styles.menucontainer}> 
         <Text>{currentTab}</Text>
         {currentItems.map((menu, i) => {
             
             return (
-        
             <View key={menu.id}>
+            <Card>
             <Text>Food: {menu.food}</Text>
             <Text>Cost: {menu.cost}</Text>
+            
+            </Card>
             </View>
             );
         })} 
         </View>
+        </SafeAreaView>
+        </ScrollView>
       </>
       );
   }
-
