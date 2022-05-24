@@ -1,23 +1,14 @@
 import {StyleSheet} from 'react-native'
 
 export default StyleSheet.create({
+  //Home screen
   container: {
     flex: 1,
     backgroundColor: '#fff',
   },
-  menucontainer: {
-    flex: 1,
-    backgroundColor: '#ecf0f1',
-    height: '100%',
-  },
-  tabcontainer: {
-
-    flexDirection: 'row',
-  },
   App: {
     alignItems: 'center',
   },
-  
   div1: {
     backgroundColor: '#151F44',
     flex: 3,
@@ -30,25 +21,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  menutitlecontainer: {
-    height: '5%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  menutitle: {
-    fontSize: 50,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    padding: 10,
-  },
-tab: {
-    width: '25%',
-    height: 40,
-    padding: 10,
-    alignItems: "flex-start",
-    color: 'black',
-    backgroundColor: '#fff',
-},
   title: {
     color: '#fff',
     fontSize: 35,
@@ -69,35 +41,69 @@ tab: {
     flex: 1,
     justifyContent: 'center',
   },
-  
-  choicesbutton: {
-    alignItems: "center",
-    textAlign: "center",
-    backgroundColor: "lightblue",
-    padding: 30,
-    margin: 10,
-    width: '60%',
-    height: 20,
-    flex: 0.15,
+
+
+  // choicesbutton: {
+  //   alignItems: "center",
+  //   textAlign: "center",
+  //   backgroundColor: "lightblue",
+  //   padding: 30,
+  //   margin: 10,
+  //   width: '60%',
+  //   height: 20,
+  //   flex: 0.15,
     
-  }, 
+  // },
+  // choicestext: {
+  //   fontSize: 18,
+  //   textTransform: "uppercase",
+  //   textAlign: 'center',
+  //   padding: 2,
+  // },
+  // choicessubtext: {
+  //   fontSize: 12,
+  //   textTransform: "uppercase",
+  //   textAlign: 'center',
+  //   padding: 2,
+  // } ,
 
-  choicestext: {
-    fontSize: 18,
-    textTransform: "uppercase",
-    textAlign: 'center',
-    padding: 2,
+
+
+  //Menu Screen
+  menucontainer: {
+    flex: 1,
+    height: '100%',
+    padding: 10,
+    marginBottom: 10,
   },
-  choicessubtext: {
-    fontSize: 12,
+  menutitlecontainer: {
+    height: '5%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+    padding: 50,
+  },
+  menutitle: {
+    fontSize: 50,
     textTransform: "uppercase",
-    textAlign: 'center',
-    padding: 2,
-  } ,
+    fontWeight: "bold",
+    padding: 10,
+  },
+
+  tabcontainer: {
+    flexDirection: 'row',
+  },
+tab: {
+    width: '25%',
+    height: 40,
+    padding: 10,
+    alignItems: "flex-start",
+    color: 'black',
+    backgroundColor: '#fff',
+},
 
 
-
-
+//Login Screen
   logincontainer: {
     flex: 1,
     backgroundColor: "#fff",
@@ -116,7 +122,7 @@ tab: {
     marginBottom: 20,
     alignItems: "center",
   },
- 
+
   TextInput: {
     height: 50,
     width: "80%",

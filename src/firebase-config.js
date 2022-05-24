@@ -1,7 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
+import storage from '@react-native-firebase/storage';
+
 
 const firebaseConfig = {
+  apiKey: "AIzaSyBmKdch4i4T4_IX5njUIP82Ci_dpMcmXPw",
   authDomain: "tuckshop-menu-ceb23.firebaseapp.com",
   projectId: "tuckshop-menu-ceb23",
   storageBucket: "tuckshop-menu-ceb23.appspot.com",
@@ -13,3 +16,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db1 = getFirestore(app);
+
