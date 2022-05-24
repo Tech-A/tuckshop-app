@@ -5,6 +5,15 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  menucontainer: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+    height: '100%',
+  },
+  tabcontainer: {
+
+    flexDirection: 'row',
+  },
   App: {
     alignItems: 'center',
   },
@@ -17,26 +26,29 @@ export default StyleSheet.create({
   },
   div2: {
     backgroundColor: '#fff',
+    flex: 2,
     alignItems: 'center',
     padding: 20,
-    
-    width: '100%',
-    flexDirection: 'row',
   },
-  div3: {
-    justifyContent: 'flex-end',
-    width: '100%',
-    alignItems: 'flex-start',
-    padding: 20,
-    textAlign: 'center',
+  menutitlecontainer: {
+    height: '5%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  container2: {
-    flex: 2,
+  menutitle: {
+    fontSize: 50,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    padding: 10,
   },
-  welcome: {
-    textAlign: 'center',
-    paddingBottom: 20,
-  },
+tab: {
+    width: '25%',
+    height: 40,
+    padding: 10,
+    alignItems: "flex-start",
+    color: 'black',
+    backgroundColor: '#fff',
+},
   title: {
     color: '#fff',
     fontSize: 35,
