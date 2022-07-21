@@ -16,4 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db1 = getFirestore(app);
+export const db2 = getFirestore(app);
 

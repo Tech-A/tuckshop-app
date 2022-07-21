@@ -135,7 +135,6 @@ export default function MenuScreen({ navigation }) {
             <Card>
             <Text>Food: {menu.food}</Text>
             <Text>Cost: {menu.cost}</Text>
-            
             </Card>
             </View>
             );

@@ -7,7 +7,19 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
   },
   App: {
-    alignItems: 'center',
+    alignItems: "center",
+  },
+  div: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    backgroundColor: '#151F44',
+  },
+  loginbtn: {
+    color: '#fff',
+    fontSize: 15,
+    marginRight: 10,
+    marginTop: 10,
+    padding: 20,
   },
   div1: {
     backgroundColor: '#151F44',
@@ -43,6 +55,8 @@ export default StyleSheet.create({
   },
 
 
+
+
   // choicesbutton: {
   //   alignItems: "center",
   //   textAlign: "center",
@@ -73,21 +87,22 @@ export default StyleSheet.create({
   menucontainer: {
     flex: 1,
     height: '100%',
-    padding: 10,
-    marginBottom: 10,
+    padding: 20,
+    marginBottom: 15,
   },
   menutitlecontainer: {
-    height: '5%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
-    padding: 50,
+    marginTop: 10,
+    padding: 10,
   },
+
   menutitle: {
     fontSize: 50,
     textTransform: "uppercase",
     fontWeight: "bold",
     padding: 10,
+    color: 'black',
   },
 
   tabcontainer: {
@@ -104,53 +119,139 @@ tab: {
 
 
 //Login Screen
-  logincontainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+logincontainer: {
+  flex: 1,
+  backgroundColor: "#fff",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: 20,
+  height: '100%',
+},
+
+inputView: {
+  backgroundColor: "lightgrey",
+  borderRadius: 30,
+  width: "70%",
+  height: 45,
+  marginBottom: 20,
+  alignItems: "center",
+},
+
+TextInput: {
+  height: 50,
+  width: "70%",
+  flex: 1,
+  padding: 10,
+  alignItems: "center",
+  justifyContent: "center",
+  textAlign: "center",
+},
+
+forgot_button: {
+  height: 30,
+  marginBottom: 10,
+  fontSize: 12,
+},
+
+admin_button: {
+  height: 30,
+  marginTop: 10,
+  marginBottom: 20,
+},
+
+loginBtn: {
+  width: "80%",
+  borderRadius: 25,
+  height: 50,
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 30,
+  backgroundColor: "#A59F54",
+
+},
+home_button: {
+  height: 40,
+  padding: 10,
+  backgroundColor: 'lightblue',
+},
+  //Info Screen 
+Infocontainer: {
+  flex: 1,
+  backgroundColor: "#fff",
+  padding: 25,
+  alignItems: "center",
+},
+image5: {
+ height: 200,
+ width: 250,
+ marginBottom: 20,
+ justifyContent: "center",
+},
+Infoheadercontainer: {
+  justifyContent: "center",
+  padding: 5,
+},
+  Infoheader: {
+    marginTop: 10,
+    color: "black",
+    fontSize: 50,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    
   },
-  loginimage: {
-    marginBottom: 40,
+infoheader2:{
+    textTransform: 'uppercase',
+    fontSize: 20,  
+    marginBottom: 10,
   },
- 
-  inputView: {
-    backgroundColor: "lightgrey",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-    alignItems: "center",
+updatesheader: {
+  textTransform: 'uppercase',
+    fontSize: 20,  
+    marginBottom: 10,
+    marginLeft: 10,
+},
+  GeneralInfocontainer: {
+  padding: 10,
+  width: '100%',
+  marginTop: 30,
+  marginBottom: 30,
   },
 
-  TextInput: {
-    height: 50,
-    width: "80%",
-    borderRadius: 30,
-    flex: 1,
+  GeneralInfoText:{
+  fontSize: 12, 
+  },
+
+faqcontainer: {
+  padding: 10,
+  width: '100%',
+  marginBottom: 50,
+},
+faqquestion: {
+  fontSize: 15,
+  fontWeight: "bold",
+  marginTop: 20,
+},
+faqanswer: {
+  fontSize: 12,
+  marginTop: 10,
+  
+},
+
+
+  updatescontainer:{
     padding: 10,
-    marginLeft: 20,
-    textAlign: 'center',
+    height: '100%',
+    width: '100%',
+    marginTop: 15,
+    marginBottom: 100,
   },
- 
-  forgot_button: {
-    height: 30,
-    marginBottom: 30,
-  },
-
-  adminbutton: {
-    height: 30,
-    marginBottom: 30,
-    padding: 20,
-  },
- 
-  loginBtn: {
-    width: "80%",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    backgroundColor: "#A59F54",
-  },
+  
+ update: {
+  borderTopWidth: 1,
+  borderBottomWidth: 1,
+  borderRightWidth: 0,
+  borderLeftWidth: 0,
+  borderColor: "grey",
+  padding: 20,
+ }
 });
