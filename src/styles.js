@@ -13,6 +13,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     backgroundColor: '#151F44',
+
   },
   loginbtn: {
     color: '#fff',
@@ -31,7 +32,7 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     flex: 2,
     alignItems: 'center',
-    padding: 20,
+    padding: 15,
   },
   title: {
     color: '#fff',
@@ -47,16 +48,25 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#A59F54",
     padding: 10,
-    margin: 10,
+    margin: 8,
     width: "99%",
     height: 80,
     flex: 1,
     justifyContent: 'center',
   },
+ btntext: {
+    fontSize: 15,
+  },
+  
+  // Admin home screen 
+  btntexta: {
+    fontSize: 18,
+    textAlign: "center",
+    padding: 15,
+  },
 
 
-
-
+// Choices screen (scrapped)
   // choicesbutton: {
   //   alignItems: "center",
   //   textAlign: "center",
@@ -104,7 +114,7 @@ export default StyleSheet.create({
     padding: 10,
     color: 'black',
   },
-
+ 
   tabcontainer: {
     flexDirection: 'row',
   },
@@ -117,7 +127,26 @@ tab: {
     backgroundColor: '#fff',
 },
 
+//admin 
+editbutton: {
+  width: 60,
+  height: 40,
+  marginTop: 10,
+  marginBottom: 10,
+  backgroundColor: 'lightblue',
+  textAlign: 'center',
+  padding: 10,
+  color: 'white',
+},
 
+delbutton: {
+  width: 60,
+  height: 40,
+  backgroundColor: 'red',
+  textAlign: 'center',
+  padding: 10,
+  color: 'white',
+},
 //Login Screen
 logincontainer: {
   flex: 1,
@@ -131,7 +160,7 @@ logincontainer: {
 inputView: {
   backgroundColor: "lightgrey",
   borderRadius: 30,
-  width: "70%",
+  width: "80%",
   height: 45,
   marginBottom: 20,
   alignItems: "center",
@@ -139,28 +168,22 @@ inputView: {
 
 TextInput: {
   height: 50,
-  width: "70%",
+  width: "80%",
   flex: 1,
   padding: 10,
   alignItems: "center",
   justifyContent: "center",
   textAlign: "center",
 },
-
-forgot_button: {
-  height: 30,
-  marginBottom: 10,
-  fontSize: 12,
-},
-
-admin_button: {
-  height: 30,
-  marginTop: 10,
-  marginBottom: 20,
+loginheading: {
+fontSize: 20,
+padding: 10, 
+marginBottom: 30,
+fontFamily: "normal",
 },
 
 loginBtn: {
-  width: "80%",
+  width: "60%",
   borderRadius: 25,
   height: 50,
   alignItems: "center",
@@ -174,6 +197,17 @@ home_button: {
   padding: 10,
   backgroundColor: 'lightblue',
 },
+signoutBtn: {
+width: "50%",
+borderRadius: 25,
+  height: 50,
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 30,
+  backgroundColor: "lightblue",
+},
+
+
   //Info Screen 
 Infocontainer: {
   flex: 1,
@@ -236,8 +270,6 @@ faqanswer: {
   marginTop: 10,
   
 },
-
-
   updatescontainer:{
     padding: 10,
     height: '100%',
