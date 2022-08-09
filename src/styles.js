@@ -128,11 +128,17 @@ tab: {
 },
 
 //admin 
+buttonStyleContainer: {
+  flex: 1,
+  flexDirection: 'row',
+  marginTop: 5,
+},
 editbutton: {
   width: 60,
   height: 40,
   marginTop: 10,
   marginBottom: 10,
+  marginRight: 10,
   backgroundColor: 'lightblue',
   textAlign: 'center',
   padding: 10,
@@ -140,13 +146,33 @@ editbutton: {
 },
 
 delbutton: {
-  width: 60,
+  width: 70,
   height: 40,
+  marginTop: 10,
+  marginBottom: 10,
   backgroundColor: 'red',
   textAlign: 'center',
   padding: 10,
   color: 'white',
 },
+createbutton:{
+  width: 80,
+  height: 40,
+  backgroundColor: 'green',
+  textAlign: 'center',
+  padding: 10,
+  color: 'white',
+  marginLeft: 10,
+  marginTop: 8,
+},
+create: {
+  width: '100%',
+  padding: 10,
+},
+buttontext: {
+  textAlign: 'center',
+},
+
 //Login Screen
 logincontainer: {
   flex: 1,
@@ -192,20 +218,20 @@ loginBtn: {
   backgroundColor: "#A59F54",
 
 },
-home_button: {
-  height: 40,
-  padding: 10,
-  backgroundColor: 'lightblue',
-},
-signoutBtn: {
-width: "50%",
-borderRadius: 25,
-  height: 50,
-  alignItems: "center",
-  justifyContent: "center",
-  marginTop: 30,
-  backgroundColor: "lightblue",
-},
+// home_button: {
+//   height: 40,
+//   padding: 10,
+//   backgroundColor: 'lightblue',
+// },
+// signoutBtn: {
+// width: "50%",
+// borderRadius: 25,
+//   height: 50,
+//   alignItems: "center",
+//   justifyContent: "center",
+//   marginTop: 30,
+//   backgroundColor: "lightblue",
+// },
 
 
   //Info Screen 
@@ -217,8 +243,8 @@ Infocontainer: {
 },
 image5: {
  height: 200,
- width: 250,
- marginBottom: 20,
+ width: '100%',
+ marginBottom: 10,
  justifyContent: "center",
 },
 Infoheadercontainer: {
@@ -231,6 +257,7 @@ Infoheadercontainer: {
     fontSize: 50,
     textTransform: "uppercase",
     fontWeight: "bold",
+    textAlign: 'left',
     
   },
 infoheader2:{
@@ -247,8 +274,8 @@ updatesheader: {
   GeneralInfocontainer: {
   padding: 10,
   width: '100%',
-  marginTop: 30,
-  marginBottom: 30,
+  marginTop: 20,
+  marginBottom: 20,
   },
 
   GeneralInfoText:{
@@ -285,5 +312,13 @@ faqanswer: {
   borderLeftWidth: 0,
   borderColor: "grey",
   padding: 20,
+ },
+ addupdatecontainer:{
+  padding: 10,
+ },
+ addupdate: {
+  color: 'lightblue',
+  fontSize: 15,
+  textDecorationLine: 'underline'
  }
 });

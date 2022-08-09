@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Button, View, Text, Image } from 'react-native';
+import { SafeAreaView, Button, View, Text, Image, TouchableOpacity } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
 import styles from '../../styles';
 import { db2 } from '../../firebase-config';
 import { ScrollView } from "react-native-gesture-handler";
+
 
 
 
@@ -34,7 +35,7 @@ export default function InfoScreenA({ navigation }) {
           
           <Image style={styles.image5}
         source={{
-          uri: 'https://shivani.co.nz/mountroskill/wp-content/uploads/2020/04/Soft-Drinks.jpg',
+          uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
         }}
       />
           
@@ -82,11 +83,15 @@ export default function InfoScreenA({ navigation }) {
 
         <Text>{updates.update}</Text>
         <Text>Date updated: {updates.date}</Text>
-        
+
         </View>
-       
-      );
+        
+    );
     })}  
+    <View style={styles.addupdatecontainer}>
+       <TouchableOpacity><Text style={styles.addupdate}>Add Update</Text></TouchableOpacity>
+      </View>
+      
     </ScrollView>
     </View>
     </View>

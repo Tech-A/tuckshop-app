@@ -31,7 +31,9 @@ const login = async () => {
       loginEmail,
       loginPassword
     );
-    alert("Welcome User");
+    
+    navigation.navigate('AdminHome');
+    // redirect logged in user to admin screens
   } catch (error) {
     alert(error.message);
   }
@@ -46,7 +48,7 @@ const logout = async () => {
 
   return (
     <View style={styles.logincontainer}>
-      <Image style={{ width: 100, height: 100, marginBottom: 10, marginTop: '10%', }}  source={{ uri: "https://photos.schoolpoint.co.nz/school/70/marist_logo.png" }}/>
+      <Image style={{ width: 100, height: 100, marginBottom: 10, marginTop: 10, }}  source={{ uri: "https://photos.schoolpoint.co.nz/school/70/marist_logo.png" }}/>
 <Text style={styles.loginheading}>Tuckshop Admin Login</Text>
 
       <StatusBar style="auto" />
@@ -79,13 +81,13 @@ const logout = async () => {
       </TouchableOpacity>
 
 {/* TEMPORARY - Only to see if a user can successfully sign in */}
-<Text>Signed in: {user?.email} </Text>
+{/* <Text>Signed in: {user?.email} </Text> */}
 {/* If a user is signed in, their email will show */}
 
 
-      <TouchableOpacity style={styles.signoutBtn}>
+      {/* <TouchableOpacity style={styles.signoutBtn}>
         <Text style={styles.signoutText} onClick={logout}> Sign Out </Text>
-      </TouchableOpacity> 
+      </TouchableOpacity>  */}
 
       
 

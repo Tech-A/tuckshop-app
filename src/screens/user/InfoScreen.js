@@ -34,7 +34,7 @@ export default function InfoScreen({ navigation }) {
           
           <Image style={styles.image5}
         source={{
-          uri: 'https://shivani.co.nz/mountroskill/wp-content/uploads/2020/04/Soft-Drinks.jpg',
+          uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
         }}
       />
           
