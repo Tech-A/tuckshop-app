@@ -11,6 +11,8 @@ import {
 import styles from '../../styles';
 import { auth } from '../../firebase-config';
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { IconButton } from 'react-native-paper';
+
 
  
 export default function LoginScreen({ navigation }) {
@@ -31,7 +33,6 @@ const login = async () => {
       loginEmail,
       loginPassword
     );
-    
     navigation.navigate('AdminHome');
     // redirect logged in user to admin screens
   } catch (error) {
@@ -76,10 +77,19 @@ const logout = async () => {
       </View>
  
       
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText} onClick={login}>LOGIN</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={login}>
+        <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
 
+      <IconButton
+    icon="home"
+    size={30}
+    onPress={() => navigation.navigate('Home')}
+  />
+{/* 
+      <TouchableOpacity style={styles.iconhome} icon="home">
+  Press me
+</TouchableOpacity> */}
 {/* TEMPORARY - Only to see if a user can successfully sign in */}
 {/* <Text>Signed in: {user?.email} </Text> */}
 {/* If a user is signed in, their email will show */}

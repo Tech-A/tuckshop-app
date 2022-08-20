@@ -1,11 +1,23 @@
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, TextInput, SafeAreaView, Button, View, Text } from 'react-native';
 import styles from '../../styles';
+// import { signOut } from "firebase/auth";
+// import { auth } from '../../firebase-config';
 
 export default function HomeScreenA({ navigation }) {
+  // const logout = async () => {
+  //   await signOut(auth);
+  //   navigation.navigate('Home');
+  // };
+    
+
     return (
         <SafeAreaView style={styles.container}>
-          
+          <View style={styles.div}>
+          <TouchableOpacity  onPress={() => navigation.navigate('Home')} >
+            <Text style={styles.loginbtn}>Logout</Text>
+          </TouchableOpacity>
+          </View>
 
         <View style={styles.div1}>
         

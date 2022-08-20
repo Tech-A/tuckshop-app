@@ -58,6 +58,7 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   
+
   // Admin home screen 
   btntexta: {
     fontSize: 18,
@@ -179,14 +180,14 @@ logincontainer: {
   backgroundColor: "#fff",
   alignItems: "center",
   justifyContent: "center",
-  padding: 20,
+  padding: 30,
   height: '100%',
 },
 
 inputView: {
   backgroundColor: "lightgrey",
   borderRadius: 30,
-  width: "80%",
+  width: "100%",
   height: 45,
   marginBottom: 20,
   alignItems: "center",
@@ -194,7 +195,7 @@ inputView: {
 
 TextInput: {
   height: 50,
-  width: "80%",
+  width: "100%",
   flex: 1,
   padding: 10,
   alignItems: "center",
@@ -216,6 +217,7 @@ loginBtn: {
   justifyContent: "center",
   marginTop: 30,
   backgroundColor: "#A59F54",
+  marginBottom: 30,
 
 },
 // home_button: {
@@ -320,5 +322,13 @@ faqanswer: {
   color: 'lightblue',
   fontSize: 15,
   textDecorationLine: 'underline'
- }
+ },
+ home_button: {
+  margin: 15,
+  padding: 10,
+  backgroundColor: 'lightblue',
+  color: 'black',
+  width: 100,
+  textAlign: 'center',
+ },
 });

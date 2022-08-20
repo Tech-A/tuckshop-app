@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import styles from '../../styles';
 import { db2 } from '../../firebase-config';
 import { ScrollView } from "react-native-gesture-handler";
-
+import { IconButton } from 'react-native-paper';
 
 
 
@@ -27,6 +27,11 @@ export default function InfoScreenA({ navigation }) {
   <SafeAreaView>
     <ScrollView>
           <View style={styles.Infoheadercontainer}>
+          <IconButton
+    icon="home"
+    size={30}
+    onPress={() => navigation.navigate('AdminHome')}
+  />
             <Text style={styles.Infoheader}>Our Tuckshop</Text>
           </View>
 
@@ -91,6 +96,17 @@ export default function InfoScreenA({ navigation }) {
     <View style={styles.addupdatecontainer}>
        <TouchableOpacity><Text style={styles.addupdate}>Add Update</Text></TouchableOpacity>
       </View>
+
+
+      <TouchableOpacity>
+        <Text style={styles.home_button} onPress={() => navigation.navigate('AdminHome')}>Back to home</Text>
+      </TouchableOpacity>
+
+      <IconButton
+    icon="home"
+    size={30}
+    onPress={() => navigation.navigate('AdminHome')}
+  />
       
     </ScrollView>
     </View>

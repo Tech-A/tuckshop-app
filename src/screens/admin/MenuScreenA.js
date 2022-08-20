@@ -6,7 +6,7 @@ import styles from '../../styles';
 import { Card, Input } from 'react-native-elements';
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { IconButton } from 'react-native-paper';
 
 
 export default function MenuScreenA({ navigation }) {
@@ -98,7 +98,12 @@ export default function MenuScreenA({ navigation }) {
       <>
       <ScrollView>
 <SafeAreaView>
-          <View style={styles.menutitlecontainer}> 
+          <View style={styles.menutitlecontainer}>  
+          <IconButton
+    icon="home"
+    size={30}
+    onPress={() => navigation.navigate('AdminHome')}
+  />
               <Text style={styles.menutitle}>Menu</Text>
           </View>
 
@@ -183,7 +188,8 @@ export default function MenuScreenA({ navigation }) {
             );
         })} 
         
-
+       
+     
         </View>
         </SafeAreaView>
         </ScrollView>
