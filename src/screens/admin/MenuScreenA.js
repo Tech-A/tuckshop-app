@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { db1 } from '../../firebase-config';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import styles from '../../styles';
 import { Card, Input } from 'react-native-elements';
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { IconButton } from 'react-native-paper';
+import { Modal, Portal, Provider, IconButton } from 'react-native-paper';
 
 
 export default function MenuScreenA({ navigation }) {
     
+    const [visible, setVisible] = React.useState(false);
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+    const containerStyle = {backgroundColor: 'white', padding: 20};
+
     const [newFood, setNewFood] = useState("");
-    const [newCost, setNewCost] = useState("");
+    const [newCost, setNewCost] = useState(0);
     const [newCategory, setNewCategory] = useState("");
 
     const [currentTab, setCurrentTab] = useState('all');
@@ -25,9 +30,34 @@ export default function MenuScreenA({ navigation }) {
     const menuCollectionRef = collection(db1, "menu");
   
     const createUser = async () => {
-        await addDoc(menuCollectionRef, {food: newFood, cost: newCost, category: newCategory});
+       await addDoc(menuCollectionRef, {food: newFood, cost: Number(newCost), category: newCategory});
+       alert("item successfully added!");
+       navigation.replace('AdminMenu');
     };
 
+    const deleteUser = async (id) => {
+        const userDoc = doc(db1, "menu", id);
+        await deleteDoc(userDoc);
+        alert("item successfully removed. ");
+        navigation.replace('AdminMenu');
+    };
+
+
+    const increaseCost = async (id, cost) => {
+        const userDoc = doc(db1, "menu", id);
+        const newFields = { cost: cost + 0.1 };
+        await updateDoc(userDoc, newFields);
+        alert("cost successfully increased! ");
+        navigation.replace('AdminMenu');
+      };
+
+      const decreaseCost = async (id, cost) => {
+        const userDoc = doc(db1, "menu", id);
+        const newFields = { cost: cost - 0.1 };
+        await updateDoc(userDoc, newFields);
+        alert("cost successfully decreased!");
+        navigation.replace('AdminMenu');
+      };
 
     useEffect(() => {
       const getMenu = async () => {
@@ -45,6 +75,7 @@ export default function MenuScreenA({ navigation }) {
                     ...doc.data(), 
                     id: doc.id 
                 });
+                
             }
 
             if (doc.category === 'drinks') {
@@ -77,37 +108,40 @@ export default function MenuScreenA({ navigation }) {
     let currentItems = [];
 
     if (currentTab === 'all') {
-        currentItems = menu.all;
+        currentItems = menu.all; 
+        console.log(currentTab);
     }
 
     if (currentTab === 'hotFood') {
-        currentItems = menu.hotFood;
+        currentItems = menu.hotFood; 
+        console.log(currentTab);
     }
 
     if (currentTab === 'drinks') {
         currentItems = menu.drinks;
+        console.log(currentTab);
     }
 
     if (currentTab === 'sweets') {
         currentItems = menu.sweets;
+        console.log(currentTab);
     }
     
 
 
   return (
-      <>
+      <> <IconButton
+    icon="home"
+    size={30}
+    onPress={() => navigation.navigate('AdminHome')}/> 
+    <Provider>
       <ScrollView>
 <SafeAreaView>
           <View style={styles.menutitlecontainer}>  
-          <IconButton
-    icon="home"
-    size={30}
-    onPress={() => navigation.navigate('AdminHome')}
-  />
               <Text style={styles.menutitle}>Menu</Text>
           </View>
 
-      <View style={styles.tabcontainer}>
+      {/* <View style={styles.tabcontainer}>
           <TouchableOpacity
           title="all"
             style={styles.tab} 
@@ -138,16 +172,29 @@ export default function MenuScreenA({ navigation }) {
                 <Text>Sweets</Text>
         </TouchableOpacity>
 
-      </View>
+      </View> */}
 
-        <View style={styles.menucontainer}> 
-        <View style={styles.create}>
+         
+
+       
+    
+
+        <View style={styles.menucontainer}>
+        <TouchableOpacity style={styles.createmodalbtn} onPress={showModal}>
+        <Text style={styles.additemtext}>Add Food</Text>
+      </TouchableOpacity>
+
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+          <View style={styles.create}>
+            <Text style={styles.menucreatetext}>Create Menu Item</Text>
         <Input placeholder="Food..." 
             onChange={(event) => { 
                 setNewFood(event.target.value);
             }}/>
 
-            <Input placeholder="Price..." 
+            <Input type="number"
+            placeholder="Price..." 
             onChange={(event) => { 
                 setNewCost(event.target.value);
             }}/>
@@ -157,9 +204,13 @@ export default function MenuScreenA({ navigation }) {
                 setNewCategory(event.target.value);
             }}/>
             
-            <TouchableOpacity onClick={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
+            <TouchableOpacity onPress={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
         </View>
 
+        </Modal>
+      </Portal> 
+      
+        
         {/* <Text>{currentTab}</Text> */}
         
 
@@ -171,11 +222,15 @@ export default function MenuScreenA({ navigation }) {
             <Card>
            
             <Text>Food: {menu.food}</Text>
-            <Text>Cost: {menu.cost}</Text>
+            <Text>Cost: $ {menu.cost}</Text>
             
             <View style={styles.buttonStyleContainer}>
-            <TouchableOpacity style={styles.editbutton}><Text style={styles.buttontext}>Edit</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.delbutton}><Text style={styles.buttontext}>Delete</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.editbutton}  onPress={() => {increaseCost(menu.id, menu.cost)}}>
+                <Text style={styles.buttontext}>  + cost</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.editbutton} onPress={() => {decreaseCost(menu.id, menu.cost)}} ><Text style={styles.buttontext}>- cost</Text></TouchableOpacity>
+
+
+            <TouchableOpacity onPress={() => {deleteUser(menu.id)}} style={styles.delbutton}><Text style={styles.buttontext}>Delete</Text></TouchableOpacity>
             </View>
             
             </Card>
@@ -188,11 +243,12 @@ export default function MenuScreenA({ navigation }) {
             );
         })} 
         
-       
-     
         </View>
+     
+       
         </SafeAreaView>
         </ScrollView>
+        </Provider>
       </>
       );
   }

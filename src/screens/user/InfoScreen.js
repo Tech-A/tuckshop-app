@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Button, View, Text, Image } from 'react-native';
+import { SafeAreaView, Button, View, Text, Image, TouchableOpacity } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
 import styles from '../../styles';
 import { db2 } from '../../firebase-config';
@@ -24,14 +24,16 @@ export default function InfoScreen({ navigation }) {
   
         <View style={styles.Infocontainer}>
   <SafeAreaView>
-    <ScrollView>
-          <View style={styles.Infoheadercontainer}>
-            <IconButton
+    <ScrollView> 
+    
+      <IconButton
     icon="home"
     size={30}
     onPress={() => navigation.navigate('Home')}
   />
 
+          <View style={styles.Infoheadercontainer}>
+          
             <Text style={styles.Infoheader}>Our Tuckshop</Text>
           </View>
 

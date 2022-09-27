@@ -86,27 +86,7 @@ const logout = async () => {
     size={30}
     onPress={() => navigation.navigate('Home')}
   />
-{/* 
-      <TouchableOpacity style={styles.iconhome} icon="home">
-  Press me
-</TouchableOpacity> */}
-{/* TEMPORARY - Only to see if a user can successfully sign in */}
-{/* <Text>Signed in: {user?.email} </Text> */}
-{/* If a user is signed in, their email will show */}
 
-
-      {/* <TouchableOpacity style={styles.signoutBtn}>
-        <Text style={styles.signoutText} onClick={logout}> Sign Out </Text>
-      </TouchableOpacity>  */}
-
-      
-
-
-
-
- {/* <TouchableOpacity>
-        <Text style={styles.home_button} onPress={() => navigation.navigate('Home')}>Back to home</Text>
-      </TouchableOpacity> */}
 
 
     </View>

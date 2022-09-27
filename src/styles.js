@@ -103,6 +103,7 @@ export default StyleSheet.create({
   },
   menutitlecontainer: {
     alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'center',
     marginTop: 10,
     padding: 10,
@@ -129,13 +130,27 @@ tab: {
 },
 
 //admin 
+createmodalbtn: {
+  width: 100,
+  height: 50,
+  marginTop: 10,
+  marginBottom: 10,
+  marginLeft: 20,
+  backgroundColor: 'green',
+  textAlign: 'center',
+  color: 'white',
+},
+additemtext: {
+  textAlign: 'center',
+  padding: 15,
+},
 buttonStyleContainer: {
   flex: 1,
   flexDirection: 'row',
   marginTop: 5,
 },
 editbutton: {
-  width: 60,
+  width: 70,
   height: 40,
   marginTop: 10,
   marginBottom: 10,
@@ -157,7 +172,7 @@ delbutton: {
   color: 'white',
 },
 createbutton:{
-  width: 80,
+  width: '100%',
   height: 40,
   backgroundColor: 'green',
   textAlign: 'center',
@@ -165,10 +180,20 @@ createbutton:{
   color: 'white',
   marginLeft: 10,
   marginTop: 8,
+  marginRight: 10,
 },
 create: {
   width: '100%',
-  padding: 10,
+  padding: 20,
+  backgroundColor: 'white',
+  marginLeft: 20,
+  marginRight: 20,
+  alignSelf: 'center',
+},
+menucreatetext: {
+  paddingLeft: 10,
+  padding: 15,
+  textAlign: 'center',
 },
 buttontext: {
   textAlign: 'center',
@@ -315,8 +340,31 @@ faqanswer: {
   borderColor: "grey",
   padding: 20,
  },
+
+ //admin 
  addupdatecontainer:{
   padding: 10,
+ },
+ addupdatec:{
+  height: 300,
+  backgroundColor: 'white', 
+  alignContent: 'center',
+  justifyContent: 'center',
+  padding: 50,
+ },
+ ContainerStyle:{
+  backgroundColor: 'white', 
+  padding: 20,
+  alignContent: 'center',
+  justifyContent: 'center',
+ },
+ createupdatebutton:{
+  width: '100%',
+  padding: 10,
+  backgroundColor: 'green',
+ },
+ updatebuttontext:{
+  textAlign: 'center',
  },
  addupdate: {
   color: 'lightblue',

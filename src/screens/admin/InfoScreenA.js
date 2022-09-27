@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Button, View, Text, Image, TouchableOpacity } from 'react-native';
-import { collection, getDocs } from 'firebase/firestore';
+import { Button, View, Text, Image, TouchableOpacity } from 'react-native';
+import { collection, getDocs, addDoc, doc } from 'firebase/firestore';
 import styles from '../../styles';
 import { db2 } from '../../firebase-config';
 import { ScrollView } from "react-native-gesture-handler";
-import { IconButton } from 'react-native-paper';
-
-
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Modal, Portal, Provider, IconButton } from 'react-native-paper';
+import { Input } from 'react-native-elements';
 
 
 export default function InfoScreenA({ navigation }) {
+
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+
+  const [newUpdate, setNewUpdate] = useState("");
+  const [newDate, setNewDate] = useState("");
+
   const [updates, setUpdates] = useState([]);
   const updatesCollectionRef = collection(db2, "updates")
+
+  const createUser = async () => {
+    await addDoc(updatesCollectionRef, {update: newUpdate, date: newDate});
+    alert("update successfully added! ");
+    navigation.replace('AdminInfo');
+ };
+
   useEffect(() => {
   const getUpdates = async () => {
     const data = await getDocs(updatesCollectionRef);
@@ -22,9 +38,11 @@ export default function InfoScreenA({ navigation }) {
 }, []);
 
     return ( 
-  
+   
+    <SafeAreaView>
         <View style={styles.Infocontainer}>
-  <SafeAreaView>
+ 
+   
     <ScrollView>
           <View style={styles.Infoheadercontainer}>
           <IconButton
@@ -76,10 +94,10 @@ export default function InfoScreenA({ navigation }) {
             <Text style={styles.faqanswer}>Online or can come before school and knock on the window. Pre-orders must be before 8.30am. </Text>
           </View>
 
-          <View> 
+          <View> <Provider>
             <Text style={styles.updatesheader}>UPDATES</Text>
             <View style={styles.updatescontainer}>
-              <ScrollView>
+              
             
      {updates.map((updates) => { 
       return (
@@ -93,27 +111,47 @@ export default function InfoScreenA({ navigation }) {
         
     );
     })}  
+ 
     <View style={styles.addupdatecontainer}>
-       <TouchableOpacity><Text style={styles.addupdate}>Add Update</Text></TouchableOpacity>
-      </View>
 
-
-      <TouchableOpacity>
-        <Text style={styles.home_button} onPress={() => navigation.navigate('AdminHome')}>Back to home</Text>
+       <TouchableOpacity onPress={showModal}>
+        <Text style={styles.addupdate} >Add Update</Text>
       </TouchableOpacity>
 
-      <IconButton
-    icon="home"
-    size={30}
-    onPress={() => navigation.navigate('AdminHome')}
-  />
-      
-    </ScrollView>
-    </View>
-    </View>
-    </ScrollView>
-  </SafeAreaView>
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} style={styles.ContainerStyle}>
+          <View style={styles.addupdatec}>
+            <Text style={styles.menucreatetext}>Add an Update...</Text>
+        <Input placeholder="Type message here..." 
+            onChange={(event) => { 
+                setNewUpdate(event.target.value);
+            }}/>
+
+            <Input 
+            placeholder="Date (dd/mm/yy)..." 
+            onChange={(event) => { 
+                setNewDate(event.target.value);
+            }}/>
+
+            
+            <TouchableOpacity onPress={createUser} style={styles.createupdatebutton}><Text style={styles.updatebuttontext}>Add Update</Text></TouchableOpacity>
         </View>
+
+        </Modal>
+      </Portal> 
+
+      </View>
+
       
+   
+    </View>
+    </Provider>
+    </View>
+
+
+    </ScrollView>
+     </View>
+  </SafeAreaView>
+   
       );
  }

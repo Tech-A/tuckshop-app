@@ -1,8 +1,10 @@
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, TextInput, SafeAreaView, Button, View, Text } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, TextInput, SafeAreaView, Linking, Button, View, Text } from 'react-native';
 import styles from '../../styles';
 
+
 export default function HomeScreen({ navigation }) {
+
     return (
         <SafeAreaView style={styles.container}>
          <View style={styles.div}>
@@ -31,7 +33,7 @@ export default function HomeScreen({ navigation }) {
         
        <TouchableOpacity
        style={styles.button}
-       onPress={() => navigation.navigate('Login')}>
+      onPress={ ()=>{ Linking.openURL('https://docs.google.com/forms/d/e/1FAIpQLSfeXWfjgRqAANG45a-AQLQX_0nZKECFaF0uDWOWc6oWOLd4Kg/viewform?usp=pp_url')}}>
      <Text style={styles.btntext}>Preorder</Text>
        </TouchableOpacity>
      

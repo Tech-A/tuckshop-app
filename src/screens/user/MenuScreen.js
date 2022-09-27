@@ -86,15 +86,18 @@ export default function MenuScreen({ navigation }) {
 
 
   return (
-      <>
-      <ScrollView>
-<SafeAreaView>
-          <View style={styles.menutitlecontainer}> 
-          <IconButton
+      <> 
+      
+      <IconButton
     icon="home"
     size={30}
     onPress={() => navigation.navigate('Home')}
   />
+
+      <ScrollView>
+<SafeAreaView>
+          <View style={styles.menutitlecontainer}> 
+         
               <Text style={styles.menutitle}>Menu</Text>
           </View>
 
@@ -132,14 +135,14 @@ export default function MenuScreen({ navigation }) {
       </View>
 
         <View style={styles.menucontainer}> 
-        <Text>{currentTab}</Text>
+        {/* <Text>{currentTab}</Text> */}
         {currentItems.map((menu, i) => {
             
             return (
             <View key={menu.id}>
             <Card>
             <Text>Food: {menu.food}</Text>
-            <Text>Cost: {menu.cost}</Text>
+            <Text>Cost: $ {menu.cost}</Text>
             </Card>
             </View>
             );
