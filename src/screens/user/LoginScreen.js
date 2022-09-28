@@ -58,8 +58,8 @@ const logout = async () => {
           style={styles.TextInput}
           placeholder="Email"
           placeholderTextColor="#003f5c"
-          onChange={(event) => {
-            setLoginEmail(event.target.value);
+          onChangeText={(text) => {
+            setLoginEmail(text);
           }}
         />
       </View>
@@ -70,8 +70,8 @@ const logout = async () => {
           placeholder="Password"
           placeholderTextColor="#003f5c"
           secureTextEntry ={true}
-          onChange={(event) => {
-            setLoginPassword(event.target.value);
+          onChangeText={(pass) => {
+            setLoginPassword(pass);
           }}
         />
       </View>
