@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { db1 } from '../../firebase-config';
 import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import styles from '../../styles';
@@ -10,11 +10,11 @@ import { Modal, Portal, Provider, IconButton } from 'react-native-paper';
 
 
 export default function MenuScreenA({ navigation }) {
-    
+
     const [visible, setVisible] = React.useState(false);
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = {backgroundColor: 'white', padding: 20};
+    const containerStyle = { backgroundColor: 'white', padding: 20 };
 
     const [newFood, setNewFood] = useState("");
     const [newCost, setNewCost] = useState(0);
@@ -28,11 +28,11 @@ export default function MenuScreenA({ navigation }) {
         all: [],
     });
     const menuCollectionRef = collection(db1, "menu");
-  
+
     const createUser = async () => {
-       await addDoc(menuCollectionRef, {food: newFood, cost: Number(newCost), category: newCategory});
-       alert("item successfully added!");
-       navigation.replace('AdminMenu');
+        await addDoc(menuCollectionRef, { food: newFood, cost: Number(newCost), category: newCategory });
+        alert("item successfully added!");
+        navigation.replace('AdminMenu');
     };
 
     const deleteUser = async (id) => {
@@ -49,71 +49,71 @@ export default function MenuScreenA({ navigation }) {
         await updateDoc(userDoc, newFields);
         alert("cost successfully increased! ");
         navigation.replace('AdminMenu');
-      };
+    };
 
-      const decreaseCost = async (id, cost) => {
+    const decreaseCost = async (id, cost) => {
         const userDoc = doc(db1, "menu", id);
         const newFields = { cost: cost - 0.1 };
         await updateDoc(userDoc, newFields);
         alert("cost successfully decreased!");
         navigation.replace('AdminMenu');
-      };
+    };
 
     useEffect(() => {
-      const getMenu = async () => {
-        const data = await getDocs(menuCollectionRef);
-        const menuItems = {
-            hotFood: [],
-            drinks: [],
-            sweets: [],
-            all: [],
+        const getMenu = async () => {
+            const data = await getDocs(menuCollectionRef);
+            const menuItems = {
+                hotFood: [],
+                drinks: [],
+                sweets: [],
+                all: [],
+            };
+
+            data.docs.forEach((doc) => {
+                if (doc.category === 'hotFood') {
+                    menuItems.hotFood.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+
+                }
+
+                if (doc.category === 'drinks') {
+                    menuItems.drinks.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                }
+                if (doc.category === 'sweets') {
+                    menuItems.sweets.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                }
+
+                menuItems.all.push({
+                    ...doc.data(),
+                    id: doc.id
+                });
+
+            })
+            setMenu(menuItems);
         };
 
-        data.docs.forEach((doc) => { 
-            if (doc.category === 'hotFood') {
-                menuItems.hotFood.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-                
-            }
-
-            if (doc.category === 'drinks') {
-                menuItems.drinks.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-            }
-            if (doc.category === 'sweets') {
-                menuItems.sweets.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-            }
-
-            menuItems.all.push({
-                ...doc.data(), 
-                id: doc.id 
-            });
-            
-        })
-        setMenu(menuItems);
-      };
-  
-      getMenu();
+        getMenu();
     }, []);
 
-    if (!menu.all ) return null;
+    if (!menu.all) return null;
 
     let currentItems = [];
 
     if (currentTab === 'all') {
-        currentItems = menu.all; 
+        currentItems = menu.all;
         console.log(currentTab);
     }
 
     if (currentTab === 'hotFood') {
-        currentItems = menu.hotFood; 
+        currentItems = menu.hotFood;
         console.log(currentTab);
     }
 
@@ -126,22 +126,22 @@ export default function MenuScreenA({ navigation }) {
         currentItems = menu.sweets;
         console.log(currentTab);
     }
-    
 
 
-  return (
-      <> <IconButton
-    icon="home"
-    size={30}
-    onPress={() => navigation.navigate('AdminHome')}/> 
-    <Provider>
-      <ScrollView>
-<SafeAreaView>
-          <View style={styles.menutitlecontainer}>  
-              <Text style={styles.menutitle}>Menu</Text>
-          </View>
 
-      {/* <View style={styles.tabcontainer}>
+    return (
+        <> 
+            <Provider>
+                <ScrollView>
+                    <SafeAreaView><IconButton
+            icon="home"
+            size={30}
+            onPress={() => navigation.navigate('AdminHome')} />
+                        <View style={styles.menutitlecontainer}>
+                            <Text style={styles.menutitle}>Menu</Text>
+                        </View>
+
+                        {/* <View style={styles.tabcontainer}>
           <TouchableOpacity
           title="all"
             style={styles.tab} 
@@ -174,81 +174,79 @@ export default function MenuScreenA({ navigation }) {
 
       </View> */}
 
-         
-
-       
-    
-
-        <View style={styles.menucontainer}>
-        <TouchableOpacity style={styles.createmodalbtn} onPress={showModal}>
-        <Text style={styles.additemtext}>Add Food</Text>
-      </TouchableOpacity>
-
-      <Portal>
-        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-          <View style={styles.create}>
-            <Text style={styles.menucreatetext}>Create Menu Item</Text>
-        <Input placeholder="Food..." 
-            onChange={(event) => { 
-                setNewFood(event.target.value);
-            }}/>
-
-            <Input type="number"
-            placeholder="Price..." 
-            onChange={(event) => { 
-                setNewCost(event.target.value);
-            }}/>
-
-            <Input placeholder="Category..." 
-            onChange={(event) => { 
-                setNewCategory(event.target.value);
-            }}/>
-            
-            <TouchableOpacity onPress={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
-        </View>
-
-        </Modal>
-      </Portal> 
-      
-        
-        {/* <Text>{currentTab}</Text> */}
-        
-
-        {currentItems.map((menu, i) => {
-            
-            return (
-            <View key={menu.id}>
-
-            <Card>
-           
-            <Text>Food: {menu.food}</Text>
-            <Text>Cost: $ {menu.cost}</Text>
-            
-            <View style={styles.buttonStyleContainer}>
-            <TouchableOpacity style={styles.editbutton}  onPress={() => {increaseCost(menu.id, menu.cost)}}>
-                <Text style={styles.buttontext}>  + cost</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.editbutton} onPress={() => {decreaseCost(menu.id, menu.cost)}} ><Text style={styles.buttontext}>- cost</Text></TouchableOpacity>
 
 
-            <TouchableOpacity onPress={() => {deleteUser(menu.id)}} style={styles.delbutton}><Text style={styles.buttontext}>Delete</Text></TouchableOpacity>
-            </View>
-            
-            </Card>
 
-            
-            
-            </View>
 
-            
-            );
-        })} 
-        
-        </View>
-     
-       
-        </SafeAreaView>
-        </ScrollView>
-        </Provider>
-      </>
-      );
-  }
+
+                        <View style={styles.menucontainer}>
+                            <TouchableOpacity style={styles.createmodalbtn} onPress={showModal}>
+                                <Text style={styles.additemtext}>Add Food</Text>
+                            </TouchableOpacity>
+
+                            <Portal>
+                                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                                    <View style={styles.create}>
+                                        <Text style={styles.menucreatetext}>Create Menu Item</Text>
+                                        <Input placeholder="Food..."
+                                            onChange={(event) => {
+                                                setNewFood(event.target.value);
+                                            }} />
+
+                                        <Input type="number"
+                                            placeholder="Price..."
+                                            onChange={(event) => {
+                                                setNewCost(event.target.value);
+                                            }} />
+
+                                        <Input placeholder="Category..."
+                                            onChange={(event) => {
+                                                setNewCategory(event.target.value);
+                                            }} />
+
+                                        <TouchableOpacity onPress={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
+                                    </View>
+
+                                </Modal>
+                            </Portal>
+
+
+
+                            {currentItems.map((menu, i) => {
+
+                                return (
+                                    <View key={menu.id}>
+
+                                        <Card>
+
+                                            <Text>Food: {menu.food}</Text>
+                                            <Text>Cost: $ {menu.cost}</Text>
+
+                                            <View style={styles.buttonStyleContainer}>
+                                                <TouchableOpacity style={styles.editbutton} onPress={() => { increaseCost(menu.id, menu.cost) }}>
+                                                    <Text style={styles.buttontext}>  + cost</Text></TouchableOpacity>
+                                                <TouchableOpacity style={styles.editbutton} onPress={() => { decreaseCost(menu.id, menu.cost) }} ><Text style={styles.buttontext}>- cost</Text></TouchableOpacity>
+
+
+                                                <TouchableOpacity onPress={() => { deleteUser(menu.id) }} style={styles.delbutton}><Text style={styles.buttontext}>Delete</Text></TouchableOpacity>
+                                            </View>
+
+                                        </Card>
+
+
+
+                                    </View>
+
+
+                                );
+                            })}
+
+                        </View>
+
+
+                    </SafeAreaView>
+                </ScrollView>
+            </Provider>
+        </>
+    );
+}

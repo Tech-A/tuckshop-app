@@ -10,7 +10,7 @@ import { IconButton } from 'react-native-paper';
 
 
 export default function MenuScreen({ navigation }) {
-    
+
     const [currentTab, setCurrentTab] = useState('all');
     const [menu, setMenu] = useState({
         hotFood: [],
@@ -19,51 +19,51 @@ export default function MenuScreen({ navigation }) {
         all: [],
     });
     const menuCollectionRef = collection(db1, "menu");
-  
+
     useEffect(() => {
-      const getMenu = async () => {
-        const data = await getDocs(menuCollectionRef);
-        const menuItems = {
-            hotFood: [],
-            drinks: [],
-            sweets: [],
-            all: [],
+        const getMenu = async () => {
+            const data = await getDocs(menuCollectionRef);
+            const menuItems = {
+                hotFood: [],
+                drinks: [],
+                sweets: [],
+                all: [],
+            };
+
+            data.docs.forEach((doc) => {
+                if (doc.data().category === 'hotFood') {
+                    menuItems.hotFood.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                }
+
+                if (doc.data().category === 'drinks') {
+                    menuItems.drinks.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                }
+                if (doc.data().category === 'sweets') {
+                    menuItems.sweets.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                }
+
+                menuItems.all.push({
+                    ...doc.data(),
+                    id: doc.id
+                });
+
+            })
+            setMenu(menuItems);
         };
 
-        data.docs.forEach((doc) => { 
-            if (doc.category === 'hotFood') {
-                menuItems.hotFood.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-            }
-
-            if (doc.category === 'drinks') {
-                menuItems.drinks.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-            }
-            if (doc.category === 'sweets') {
-                menuItems.sweets.push({
-                    ...doc.data(), 
-                    id: doc.id 
-                });
-            }
-
-            menuItems.all.push({
-                ...doc.data(), 
-                id: doc.id 
-            });
-            
-        })
-        setMenu(menuItems);
-      };
-  
-      getMenu();
+        getMenu();
     }, []);
 
-    if (!menu.all ) return null;
+    if (!menu.all) return null;
 
     let currentItems = [];
 
@@ -82,74 +82,74 @@ export default function MenuScreen({ navigation }) {
     if (currentTab === 'sweets') {
         currentItems = menu.sweets;
     }
-    
 
 
-  return (
-      <> 
-      
-      <IconButton
-    icon="home"
-    size={30}
-    onPress={() => navigation.navigate('Home')}
-  />
 
-      <ScrollView>
-<SafeAreaView>
-          <View style={styles.menutitlecontainer}> 
-         
-              <Text style={styles.menutitle}>Menu</Text>
-          </View>
+    return (
+        <>
 
-      <View style={styles.tabcontainer}>
-          <TouchableOpacity
-          title="all"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('all')}
-            >
-                <Text>All</Text>
-            
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="hotFood"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('hotFood')}
-            >
-                <Text>Hot Food</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="drinks"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('drinks')}
-            >
-                <Text>Drinks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="sweets"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('sweets')}
-            >
-                <Text>Sweets</Text>
-        </TouchableOpacity>
+            <IconButton
+                icon="home"
+                size={30}
+                onPress={() => navigation.navigate('Home')}
+            />
 
-      </View>
+            <ScrollView>
+                <SafeAreaView>
+                    <View style={styles.menutitlecontainer}>
 
-        <View style={styles.menucontainer}> 
-        {/* <Text>{currentTab}</Text> */}
-        {currentItems.map((menu, i) => {
-            
-            return (
-            <View key={menu.id}>
-            <Card>
-            <Text>Food: {menu.food}</Text>
-            <Text>Cost: $ {menu.cost}</Text>
-            </Card>
-            </View>
-            );
-        })} 
-        </View>
-        </SafeAreaView>
-        </ScrollView>
-      </>
-      );
-  }
+                        <Text style={styles.menutitle}>Menu</Text>
+                    </View>
+
+                    <View style={styles.tabcontainer}>
+                        <TouchableOpacity
+                            title="all"
+                            style={styles.tab}
+                            onPress={() => setCurrentTab('all')}
+                        >
+                            <Text>All</Text>
+
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            title="hotFood"
+                            style={styles.tab}
+                            onPress={() => setCurrentTab('hotFood')}
+                        >
+                            <Text>Hot Food</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            title="drinks"
+                            style={styles.tab}
+                            onPress={() => setCurrentTab('drinks')}
+                        >
+                            <Text>Drinks</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            title="sweets"
+                            style={styles.tab}
+                            onPress={() => setCurrentTab('sweets')}
+                        >
+                            <Text>Sweets</Text>
+                        </TouchableOpacity>
+
+                    </View>
+
+                    <View style={styles.menucontainer}>
+                        {/* <Text>{currentTab}</Text> */}
+                        {currentItems.map((menu, i) => {
+
+                            return (
+                                <View key={menu.id}>
+                                    <Card>
+                                        <Text>Food: {menu.food}</Text>
+                                        <Text>Cost: $ {menu.cost}</Text>
+                                    </Card>
+                                </View>
+                            );
+                        })}
+                    </View>
+                </SafeAreaView>
+            </ScrollView>
+        </>
+    );
+}

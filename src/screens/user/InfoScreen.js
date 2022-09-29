@@ -12,47 +12,47 @@ export default function InfoScreen({ navigation }) {
   const [updates, setUpdates] = useState([]);
   const updatesCollectionRef = collection(db2, "updates")
   useEffect(() => {
-  const getUpdates = async () => {
-    const data = await getDocs(updatesCollectionRef);
-    setUpdates(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-  };
+    const getUpdates = async () => {
+      const data = await getDocs(updatesCollectionRef);
+      setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
 
-  getUpdates();
-}, []);
+    getUpdates();
+  }, []);
 
-    return ( 
-  
-        <View style={styles.Infocontainer}>
-  <SafeAreaView>
-    <ScrollView> 
-    
-      <IconButton
-    icon="home"
-    size={30}
-    onPress={() => navigation.navigate('Home')}
-  />
+  return (
+
+    <View style={styles.Infocontainer}>
+      <SafeAreaView>
+        <ScrollView>
+
+          <IconButton
+            icon="home"
+            size={30}
+            onPress={() => navigation.navigate('Home')}
+          />
 
           <View style={styles.Infoheadercontainer}>
-          
+
             <Text style={styles.Infoheader}>Our Tuckshop</Text>
           </View>
 
-          
-          
+
+
           <Image style={styles.image5}
-        source={{
-          uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
-        }}
-      />
-          
-          
-          <View style={styles.GeneralInfocontainer}> 
+            source={{
+              uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
+            }}
+          />
+
+
+          <View style={styles.GeneralInfocontainer}>
             <Text style={styles.infoheader2}>General Info</Text>
             <Text style={styles.GeneralInfoText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id ligula hendrerit, lobortis turpis quis, tempus elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis ac neque nec urna consectetur rhoncus. Donec finibus, dui tempus blandit laoreet, lectus elit dignissim sapien, sodales finibus erat lectus vitae felis. Aliquam sagittis placerat cursus. Etiam viverra mauris at mattis euismod. Proin convallis gravida lectus, sed placerat massa dictum id. Nunc vitae ipsum nec metus tristique tincidunt. Integer vestibulum nunc erat, sit amet gravida arcu accumsan aliquam.</Text>
           </View>
 
 
-          <View style={styles.faqcontainer}> 
+          <View style={styles.faqcontainer}>
             <Text style={styles.infoheader2}>FAQS</Text>
 
             <Text style={styles.faqquestion}>When does the tuckshop open?</Text>
@@ -77,29 +77,29 @@ export default function InfoScreen({ navigation }) {
             <Text style={styles.faqanswer}>Online or can come before school and knock on the window. Pre-orders must be before 8.30am. </Text>
           </View>
 
-          <View> 
+          <View>
             <Text style={styles.updatesheader}>UPDATES</Text>
             <View style={styles.updatescontainer}>
               <ScrollView>
-            
-     {updates.map((updates) => { 
-      return (
-    
-        <View style={styles.update}>
 
-        <Text>{updates.update}</Text>
-        <Text>Date updated: {updates.date}</Text>
-        
-        </View>
-       
-      );
-    })}  
-    </ScrollView>
+                {updates.map((updates) => {
+                  return (
+
+                    <View style={styles.update}>
+
+                      <Text>{updates.update}</Text>
+                      <Text>Date updated: {updates.date}</Text>
+
+                    </View>
+
+                  );
+                })}
+              </ScrollView>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </View>
-    </View>
-    </ScrollView>
-  </SafeAreaView>
-        </View>
-      
-      );
- }
+
+  );
+}
