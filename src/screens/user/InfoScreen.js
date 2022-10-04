@@ -22,13 +22,14 @@ export default function InfoScreen({ navigation }) {
 
   return (
 
-    <View style={styles.Infocontainer}>
+    
       <SafeAreaView>
         <ScrollView>
-
+<View style={styles.Infocontainer}>
           <IconButton
             icon="home"
             size={30}
+            style={styles.icon}
             onPress={() => navigation.navigate('Home')}
           />
 
@@ -48,7 +49,7 @@ export default function InfoScreen({ navigation }) {
 
           <View style={styles.GeneralInfocontainer}>
             <Text style={styles.infoheader2}>General Info</Text>
-            <Text style={styles.GeneralInfoText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id ligula hendrerit, lobortis turpis quis, tempus elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis ac neque nec urna consectetur rhoncus. Donec finibus, dui tempus blandit laoreet, lectus elit dignissim sapien, sodales finibus erat lectus vitae felis. Aliquam sagittis placerat cursus. Etiam viverra mauris at mattis euismod. Proin convallis gravida lectus, sed placerat massa dictum id. Nunc vitae ipsum nec metus tristique tincidunt. Integer vestibulum nunc erat, sit amet gravida arcu accumsan aliquam.</Text>
+            <Text style={styles.GeneralInfoText}>The tuckshop is open to all students at Marist College, during breaks and before school. </Text>
           </View>
 
 
@@ -78,7 +79,7 @@ export default function InfoScreen({ navigation }) {
           </View>
 
           <View>
-            <Text style={styles.updatesheader}>UPDATES</Text>
+            <Text style={styles.updatesheader}>NEWSFEED</Text>
             <View style={styles.updatescontainer}>
               <ScrollView>
 
@@ -96,10 +97,11 @@ export default function InfoScreen({ navigation }) {
                 })}
               </ScrollView>
             </View>
+          </View> 
           </View>
         </ScrollView>
       </SafeAreaView>
-    </View>
+   
 
   );
 }

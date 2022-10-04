@@ -98,14 +98,13 @@ export default StyleSheet.create({
   menucontainer: {
     flex: 1,
     height: '100%',
-    padding: 20,
+    padding: 10,
     marginBottom: 15,
   },
   menutitlecontainer: {
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop: 10,
     padding: 10,
   },
 
@@ -130,15 +129,32 @@ export default StyleSheet.create({
   },
 
   //admin 
+  menucontainerA: {
+    flex: 1,
+    height: '100%',
+    marginBottom: 15,
+  },
+  menutitlecontainerA: {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  menutitleA: {
+    fontSize: 50,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    padding: 10,
+    color: 'black',
+  },
   createmodalbtn: {
     width: 100,
     height: 50,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 20,
+    marginBottom: 30,
     backgroundColor: 'green',
     textAlign: 'center',
     color: 'white',
+    alignSelf: 'center'
   },
   additemtext: {
     textAlign: 'center',
@@ -198,6 +214,8 @@ export default StyleSheet.create({
   buttontext: {
     textAlign: 'center',
   },
+
+  
 
   //Login Screen
   logincontainer: {
@@ -262,10 +280,15 @@ export default StyleSheet.create({
 
 
   //Info Screen 
+  icon:{
+    alignSelf: "flex-start",
+    margin: 10,
+    marginTop: 30,
+  },
+
   Infocontainer: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 25,
     alignItems: "center",
   },
   image5: {
@@ -277,15 +300,14 @@ export default StyleSheet.create({
   Infoheadercontainer: {
     justifyContent: "center",
     padding: 5,
+    margin: 10,
   },
   Infoheader: {
-    marginTop: 10,
     color: "black",
     fontSize: 50,
     textTransform: "uppercase",
     fontWeight: "bold",
     textAlign: 'left',
-
   },
   infoheader2: {
     textTransform: 'uppercase',
@@ -342,6 +364,17 @@ export default StyleSheet.create({
   },
 
   //admin 
+  InfocontainerA: {
+   
+    backgroundColor: "#fff",
+    padding: 10,
+    alignItems: "center",
+    height: '100%',
+  },
+  InfoheadercontainerA: {
+    justifyContent: "center",
+    padding: 5,
+  },
   addupdatecontainer: {
     padding: 10,
   },
@@ -352,12 +385,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 50,
   },
-  ContainerStyle: {
-    backgroundColor: 'white',
-    padding: 20,
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
+ 
   createupdatebutton: {
     width: '100%',
     padding: 10,

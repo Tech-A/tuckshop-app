@@ -34,7 +34,7 @@ export default function HomeScreenA({ navigation }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('AdminInfo')}>
-          <Text style={styles.btntexta}>Update tuckshop information</Text>
+          <Text style={styles.btntexta}>Update Newsfeed</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

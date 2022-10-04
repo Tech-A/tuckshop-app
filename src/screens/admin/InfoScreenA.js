@@ -15,6 +15,8 @@ export default function InfoScreenA({ navigation }) {
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
+  const containerStyle = { backgroundColor: 'white', padding: 20 };
+
 
   const [newUpdate, setNewUpdate] = useState("");
   const [newDate, setNewDate] = useState("");
@@ -38,13 +40,13 @@ export default function InfoScreenA({ navigation }) {
   }, []);
 
   return (
-
+<Provider>
     <SafeAreaView>
-      <View style={styles.Infocontainer}>
+      <View style={styles.InfocontainerA}>
 
 
         <ScrollView>
-          <View style={styles.Infoheadercontainer}>
+          <View style={styles.InfoheadercontainerA}>
             <IconButton
               icon="home"
               size={30}
@@ -55,7 +57,7 @@ export default function InfoScreenA({ navigation }) {
 
 
 
-
+{/* 
           <Image style={styles.image5}
             source={{
               uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
@@ -92,10 +94,44 @@ export default function InfoScreenA({ navigation }) {
 
             <Text style={styles.faqquestion}>How do you pre-order?</Text>
             <Text style={styles.faqanswer}>Online or can come before school and knock on the window. Pre-orders must be before 8.30am. </Text>
-          </View>
+          </View> */}
 
-          <View> <Provider>
-            <Text style={styles.updatesheader}>UPDATES</Text>
+          <View> 
+            <Text style={styles.updatesheader}>NEWSFEED</Text>
+            <View style={styles.addupdatecontainer}>
+
+                <TouchableOpacity onPress={showModal}>
+                  <Text style={styles.addupdate} >Add New Update</Text>
+                </TouchableOpacity>
+
+                <Portal>
+                  <Modal visible={visible} onDismiss={hideModal} ontentContainerStyle={containerStyle}>
+                    <View style={styles.addupdatec}>
+                      <Text style={styles.menucreatetext}>Add an Update...</Text>
+                      <Input placeholder="Type message here..."
+                        onChangeText={(text) => {
+                          setNewUpdate(text);
+                        }} />
+
+                      <Input
+                        placeholder="Date (dd/mm/yy)..."
+                        onChangeText={(date) => {
+                          setNewDate(date);
+                        }} />
+
+
+                      <TouchableOpacity onPress={createUser} style={styles.createupdatebutton}><Text style={styles.updatebuttontext}>Add Update</Text></TouchableOpacity>
+                    </View>
+
+                  </Modal>
+                </Portal>
+
+              </View>
+
+
+
+            </View>
+       
             <View style={styles.updatescontainer}>
 
 
@@ -112,46 +148,13 @@ export default function InfoScreenA({ navigation }) {
                 );
               })}
 
-              <View style={styles.addupdatecontainer}>
-
-                <TouchableOpacity onPress={showModal}>
-                  <Text style={styles.addupdate} >Add Update</Text>
-                </TouchableOpacity>
-
-                <Portal>
-                  <Modal visible={visible} onDismiss={hideModal} style={styles.ContainerStyle}>
-                    <View style={styles.addupdatec}>
-                      <Text style={styles.menucreatetext}>Add an Update...</Text>
-                      <Input placeholder="Type message here..."
-                        onChange={(event) => {
-                          setNewUpdate(event.target.value);
-                        }} />
-
-                      <Input
-                        placeholder="Date (dd/mm/yy)..."
-                        onChange={(event) => {
-                          setNewDate(event.target.value);
-                        }} />
-
-
-                      <TouchableOpacity onPress={createUser} style={styles.createupdatebutton}><Text style={styles.updatebuttontext}>Add Update</Text></TouchableOpacity>
-                    </View>
-
-                  </Modal>
-                </Portal>
-
-              </View>
-
-
-
-            </View>
-          </Provider>
+              
           </View>
 
 
         </ScrollView>
       </View>
     </SafeAreaView>
-
+   </Provider>
   );
 }

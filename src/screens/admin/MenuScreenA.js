@@ -21,12 +21,12 @@ export default function MenuScreenA({ navigation }) {
     const [newCategory, setNewCategory] = useState("");
 
     const [currentTab, setCurrentTab] = useState('all');
-    const [menu, setMenu] = useState({
+    const [menu, setMenu] = useState([{
         hotFood: [],
         drinks: [],
         sweets: [],
         all: [],
-    });
+    }]);
     const menuCollectionRef = collection(db1, "menu");
 
     const createUser = async () => {
@@ -70,7 +70,7 @@ export default function MenuScreenA({ navigation }) {
             };
 
             data.docs.forEach((doc) => {
-                if (doc.category === 'hotFood') {
+                if (doc.data().category === 'hotFood') {
                     menuItems.hotFood.push({
                         ...doc.data(),
                         id: doc.id
@@ -78,13 +78,13 @@ export default function MenuScreenA({ navigation }) {
 
                 }
 
-                if (doc.category === 'drinks') {
+                if (doc.data().category === 'drinks') {
                     menuItems.drinks.push({
                         ...doc.data(),
                         id: doc.id
                     });
                 }
-                if (doc.category === 'sweets') {
+                if (doc.data().category === 'sweets') {
                     menuItems.sweets.push({
                         ...doc.data(),
                         id: doc.id
@@ -130,56 +130,22 @@ export default function MenuScreenA({ navigation }) {
 
 
     return (
-        <> 
+        <>
             <Provider>
                 <ScrollView>
-                    <SafeAreaView><IconButton
-            icon="home"
-            size={30}
-            onPress={() => navigation.navigate('AdminHome')} />
-                        <View style={styles.menutitlecontainer}>
-                            <Text style={styles.menutitle}>Menu</Text>
+                    <SafeAreaView>
+                        
+                        <IconButton
+                        icon="home"
+                        size={30}
+                        onPress={() => navigation.navigate('AdminHome')} />
+
+                        <View style={styles.menutitlecontainerA}>
+                            <Text style={styles.menutitleA}>Menu</Text>
                         </View>
 
-                        {/* <View style={styles.tabcontainer}>
-          <TouchableOpacity
-          title="all"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('all')}
-            >
-                <Text>All</Text>
-            
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="hotFood"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('hotFood')}
-            >
-                <Text>Hot Food</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="drinks"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('drinks')}
-            >
-                <Text>Drinks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-            title="sweets"
-            style={styles.tab} 
-            onPress={() => setCurrentTab('sweets')}
-            >
-                <Text>Sweets</Text>
-        </TouchableOpacity>
-
-      </View> */}
-
-
-
-
-
-
-                        <View style={styles.menucontainer}>
+                        <View style={styles.menucontainerA}>
+                            
                             <TouchableOpacity style={styles.createmodalbtn} onPress={showModal}>
                                 <Text style={styles.additemtext}>Add Food</Text>
                             </TouchableOpacity>
@@ -189,19 +155,19 @@ export default function MenuScreenA({ navigation }) {
                                     <View style={styles.create}>
                                         <Text style={styles.menucreatetext}>Create Menu Item</Text>
                                         <Input placeholder="Food..."
-                                            onChange={(event) => {
-                                                setNewFood(event.target.value);
+                                            onChangeText={(text) => {
+                                                setNewFood(text);
                                             }} />
 
                                         <Input type="number"
                                             placeholder="Price..."
-                                            onChange={(event) => {
-                                                setNewCost(event.target.value);
+                                            onChangeText={(number) => {
+                                                setNewCost(number);
                                             }} />
 
-                                        <Input placeholder="Category..."
-                                            onChange={(event) => {
-                                                setNewCategory(event.target.value);
+                                        <Input placeholder="Category... ('hotFood', 'sweets', 'drinks')"
+                                            onChangeText={(category) => {
+                                                setNewCategory(category);
                                             }} />
 
                                         <TouchableOpacity onPress={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
@@ -210,14 +176,47 @@ export default function MenuScreenA({ navigation }) {
                                 </Modal>
                             </Portal>
 
+                            <View style={styles.tabcontainer}>
+                                <TouchableOpacity
+                                    title="all"
+                                    style={styles.tab}
+                                    onPress={() => setCurrentTab('all')}
+                                >
+                                    <Text>All</Text>
+
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    title="hotFood"
+                                    style={styles.tab}
+                                    onPress={() => setCurrentTab('hotFood')}
+                                >
+                                    <Text>Hot Food</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    title="drinks"
+                                    style={styles.tab}
+                                    onPress={() => setCurrentTab('drinks')}
+                                >
+                                    <Text>Drinks</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    title="sweets"
+                                    style={styles.tab}
+                                    onPress={() => setCurrentTab('sweets')}
+                                >
+                                    <Text>Sweets</Text>
+                                </TouchableOpacity>
+
+                            </View>
+
 
 
                             {currentItems.map((menu, i) => {
 
                                 return (
-                                    <View key={menu.id}>
+                                    <View key={menu.id} >
 
-                                        <Card>
+                                        <Card style={styles.adminmenucard}>
 
                                             <Text>Food: {menu.food}</Text>
                                             <Text>Cost: $ {menu.cost}</Text>

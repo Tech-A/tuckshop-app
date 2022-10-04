@@ -87,15 +87,15 @@ export default function MenuScreen({ navigation }) {
 
     return (
         <>
-
+<ScrollView>
+                <SafeAreaView>
             <IconButton
                 icon="home"
                 size={30}
                 onPress={() => navigation.navigate('Home')}
             />
 
-            <ScrollView>
-                <SafeAreaView>
+            
                     <View style={styles.menutitlecontainer}>
 
                         <Text style={styles.menutitle}>Menu</Text>
