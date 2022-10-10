@@ -5,27 +5,28 @@ import {
   View,
   Image,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import styles from '../../styles';
 import { auth } from '../../firebase-config';
-import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { IconButton } from 'react-native-paper';
 
 
 
 export default function LoginScreen({ navigation }) {
 
+  // sets login email and password variables
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({}); // Sets user state to be null/nothing (not logged in)
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
+    setUser(currentUser); // Sets user to be current user (logged in user)
   });
 
+  //Signs user in with stored email and password in firebase authentication
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -36,13 +37,11 @@ export default function LoginScreen({ navigation }) {
       navigation.navigate('AdminHome');
       // redirect logged in user to admin screens
     } catch (error) {
-      alert(error.message);
+      alert(error.message); // Response to wrong details
     }
   };
 
-  const logout = async () => {
-    await signOut(auth);
-  };
+
 
 
 
@@ -51,15 +50,17 @@ export default function LoginScreen({ navigation }) {
     <View style={styles.logincontainer}>
       <Image style={{ width: 100, height: 100, marginBottom: 10, marginTop: 10, }} source={{ uri: "https://photos.schoolpoint.co.nz/school/70/marist_logo.png" }} />
       <Text style={styles.loginheading}>Tuckshop Admin Login</Text>
+      <Text style={styles.loginheadingwarning}>Warning: case-sensitive! (check for unnecessary spaces etc) </Text>
 
       <StatusBar style="auto" />
+
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
           placeholder="Email"
           placeholderTextColor="#003f5c"
           onChangeText={(text) => {
-            setLoginEmail(text);
+          setLoginEmail(text);
           }}
         />
       </View>
@@ -71,7 +72,7 @@ export default function LoginScreen({ navigation }) {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(pass) => {
-            setLoginPassword(pass);
+          setLoginPassword(pass);
           }}
         />
       </View>

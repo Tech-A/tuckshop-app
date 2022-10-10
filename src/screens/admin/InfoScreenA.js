@@ -10,29 +10,34 @@ import { Input } from 'react-native-elements';
 
 
 export default function InfoScreenA({ navigation }) {
-
+  
+  //Modal
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-
+  //Modal styling
   const containerStyle = { backgroundColor: 'white', padding: 20 };
 
 
+  const updatesCollectionRef = collection(db2, "updates") // Gets update database from firebase
+
+
+  // Sets variables for create function
   const [newUpdate, setNewUpdate] = useState("");
   const [newDate, setNewDate] = useState("");
 
   const [updates, setUpdates] = useState([]);
-  const updatesCollectionRef = collection(db2, "updates")
 
+  // Create function
   const createUser = async () => {
-    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate });
+    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate });  // Adds data to firebase
     alert("update successfully added! ");
-    navigation.replace('AdminInfo');
+    navigation.replace('AdminInfo'); // Refreshes with updated information
   };
 
   useEffect(() => {
     const getUpdates = async () => {
-      const data = await getDocs(updatesCollectionRef);
+      const data = await getDocs(updatesCollectionRef); // Displays data from updates database in firebase
       setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -42,8 +47,8 @@ export default function InfoScreenA({ navigation }) {
   return (
 <Provider>
     <SafeAreaView>
-      <View style={styles.InfocontainerA}>
 
+      <View style={styles.InfocontainerA}>
 
         <ScrollView>
           <View style={styles.InfoheadercontainerA}>
@@ -56,45 +61,6 @@ export default function InfoScreenA({ navigation }) {
           </View>
 
 
-
-{/* 
-          <Image style={styles.image5}
-            source={{
-              uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
-            }}
-          />
-
-
-          <View style={styles.GeneralInfocontainer}>
-            <Text style={styles.infoheader2}>General Info</Text>
-            <Text style={styles.GeneralInfoText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id ligula hendrerit, lobortis turpis quis, tempus elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis ac neque nec urna consectetur rhoncus. Donec finibus, dui tempus blandit laoreet, lectus elit dignissim sapien, sodales finibus erat lectus vitae felis. Aliquam sagittis placerat cursus. Etiam viverra mauris at mattis euismod. Proin convallis gravida lectus, sed placerat massa dictum id. Nunc vitae ipsum nec metus tristique tincidunt. Integer vestibulum nunc erat, sit amet gravida arcu accumsan aliquam.</Text>
-          </View>
-
-
-          <View style={styles.faqcontainer}>
-            <Text style={styles.infoheader2}>FAQS</Text>
-
-            <Text style={styles.faqquestion}>When does the tuckshop open?</Text>
-            <Text style={styles.faqanswer}>Tuckshop is open from 8am-2.10pm Mon-Fri. You can only buy during the morning, break 1 and break 2</Text>
-
-            <Text style={styles.faqquestion}>Where is the tuckshop?</Text>
-            <Text style={styles.faqanswer}>The tuckshop is located near the shed/garden behind the library and near the science classes.</Text>
-
-            <Text style={styles.faqquestion}>What is the cost range of the tuckshop?</Text>
-            <Text style={styles.faqanswer}>The tuckshop food ranges from $1.00-$7.00</Text>
-
-            <Text style={styles.faqquestion}>What are the methods of paying available (ie. credit card, cash) </Text>
-            <Text style={styles.faqanswer}>Tuckshop accepts multiple methods of payment - credit card, EFTPOS, cash.</Text>
-
-            <Text style={styles.faqquestion}>Who can go to the tuckshop?</Text>
-            <Text style={styles.faqanswer}>The tuckshop is open to all students.</Text>
-
-            <Text style={styles.faqquestion}>Do they offer any special dietary options? (eg vegetarian, gluten free)</Text>
-            <Text style={styles.faqanswer}>Yes</Text>
-
-            <Text style={styles.faqquestion}>How do you pre-order?</Text>
-            <Text style={styles.faqanswer}>Online or can come before school and knock on the window. Pre-orders must be before 8.30am. </Text>
-          </View> */}
 
           <View> 
             <Text style={styles.updatesheader}>NEWSFEED</Text>

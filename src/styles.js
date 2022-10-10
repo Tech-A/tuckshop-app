@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native'
+import { grey100 } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 export default StyleSheet.create({
+
   //Home screen
   container: {
     flex: 1,
@@ -17,9 +19,9 @@ export default StyleSheet.create({
   },
   loginbtn: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 20,
     marginRight: 10,
-    marginTop: 10,
+    marginTop: 20,
     padding: 20,
   },
   div1: {
@@ -67,32 +69,6 @@ export default StyleSheet.create({
   },
 
 
-  // Choices screen (scrapped)
-  // choicesbutton: {
-  //   alignItems: "center",
-  //   textAlign: "center",
-  //   backgroundColor: "lightblue",
-  //   padding: 30,
-  //   margin: 10,
-  //   width: '60%',
-  //   height: 20,
-  //   flex: 0.15,
-
-  // },
-  // choicestext: {
-  //   fontSize: 18,
-  //   textTransform: "uppercase",
-  //   textAlign: 'center',
-  //   padding: 2,
-  // },
-  // choicessubtext: {
-  //   fontSize: 12,
-  //   textTransform: "uppercase",
-  //   textAlign: 'center',
-  //   padding: 2,
-  // } ,
-
-
 
   //Menu Screen
   menucontainer: {
@@ -123,12 +99,28 @@ export default StyleSheet.create({
     width: '25%',
     height: 40,
     padding: 10,
-    alignItems: "flex-start",
+    alignItems: "center",
     color: 'black',
     backgroundColor: '#fff',
   },
+ tabtext: {
+  fontSize: 13,
+ },
 
   //admin 
+  menuhelpcontainerA: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    
+  },
+  menuhelp: {
+    fontSize: 20,
+    color: 'grey',
+    paddingLeft: 15,
+  },
+  icon2: {
+    alignSelf: 'flex-start',
+  },
   menucontainerA: {
     flex: 1,
     height: '100%',
@@ -139,6 +131,7 @@ export default StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     padding: 10,
+    paddingTop: 0,
   },
   menutitleA: {
     fontSize: 50,
@@ -154,7 +147,7 @@ export default StyleSheet.create({
     backgroundColor: 'green',
     textAlign: 'center',
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   additemtext: {
     textAlign: 'center',
@@ -164,6 +157,13 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginTop: 5,
+  },
+  categorytext: {
+    fontSize: 15,
+    marginLeft:10,
+  }, 
+  categorytextcategory:{
+    marginLeft: 10,
   },
   editbutton: {
     width: 70,
@@ -195,7 +195,7 @@ export default StyleSheet.create({
     padding: 10,
     color: 'white',
     marginLeft: 10,
-    marginTop: 8,
+    marginTop: 25,
     marginRight: 10,
   },
   create: {
@@ -209,13 +209,81 @@ export default StyleSheet.create({
   menucreatetext: {
     paddingLeft: 10,
     padding: 15,
+    fontSize: 20,
+    textTransform: 'uppercase',
+    fontWeight: "bold",
     textAlign: 'center',
   },
   buttontext: {
     textAlign: 'center',
   },
+//help
+helpcontainer: {
+  flex: 1,
+  marginTop:50,
+  margin: 10,
+  height: '100%',
+},
+helpheadercontainer: {
+  justifyContent: "center",
+},
+backheader: {
+  color:'black',
+textAlign:'center',
+fontSize: 18,
 
-  
+},
+backbutton: {
+  height: 40,
+  width: 65,
+  backgroundColor: 'lightblue',
+  marginLeft: 15,
+  justifyContent: 'center',
+},
+helpheader: {
+color: "black",
+  fontSize: 50,
+  textTransform: "uppercase",
+  fontWeight: "bold",
+  textAlign: 'left',
+  padding: 10,
+  paddingLeft: 10,
+},
+ HelpText: {
+  fontSize: 15,
+  marginBottom: 10, 
+ },
+ HelpText2: {
+  fontSize: 15,
+  marginLeft: 15,
+  padding: 10,
+ },
+ helpheader2Red:{
+  fontSize: 20,
+  fontWeight: 'bold',
+  color: 'red',
+  marginTop: 10,
+ },
+
+ helpheader2Green:{
+  fontSize: 20,
+  fontWeight: 'bold',
+  color: 'green',
+ },
+ helpheader2Blue:{
+  fontSize: 20,
+  fontWeight: 'bold',
+  color: 'blue',
+  marginTop: 10,
+ },
+ HelpTextcontainer:{
+  padding: 10,
+  width: '100%',
+  marginTop: 5,
+  marginBottom: 20,
+ },
+
+
 
   //Login Screen
   logincontainer: {
@@ -248,10 +316,15 @@ export default StyleSheet.create({
   loginheading: {
     fontSize: 20,
     padding: 10,
-    marginBottom: 30,
     fontFamily: "normal",
   },
-
+  loginheadingwarning: {
+    fontSize: 13,
+    padding: 10,
+    marginBottom: 30,
+    fontStyle: 'italic',
+    textAlign: 'center',
+  },
   loginBtn: {
     width: "60%",
     borderRadius: 25,
@@ -263,21 +336,7 @@ export default StyleSheet.create({
     marginBottom: 30,
 
   },
-  // home_button: {
-  //   height: 40,
-  //   padding: 10,
-  //   backgroundColor: 'lightblue',
-  // },
-  // signoutBtn: {
-  // width: "50%",
-  // borderRadius: 25,
-  //   height: 50,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   marginTop: 30,
-  //   backgroundColor: "lightblue",
-  // },
-
+  
 
   //Info Screen 
   icon:{
@@ -290,6 +349,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    padding: 10,
   },
   image5: {
     height: 200,

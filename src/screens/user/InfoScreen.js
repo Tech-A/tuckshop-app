@@ -9,11 +9,14 @@ import { IconButton } from 'react-native-paper';
 
 
 export default function InfoScreen({ navigation }) {
+
+  const updatesCollectionRef = collection(db2, "updates") // Gets update database from firebase
+
   const [updates, setUpdates] = useState([]);
-  const updatesCollectionRef = collection(db2, "updates")
+
   useEffect(() => {
     const getUpdates = async () => {
-      const data = await getDocs(updatesCollectionRef);
+      const data = await getDocs(updatesCollectionRef); // Displays data from updates database in firebase
       setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -23,9 +26,11 @@ export default function InfoScreen({ navigation }) {
   return (
 
     
-      <SafeAreaView>
-        <ScrollView>
-<View style={styles.Infocontainer}>
+<SafeAreaView>
+    <ScrollView>
+
+        <View style={styles.Infocontainer}>
+
           <IconButton
             icon="home"
             size={30}
@@ -34,10 +39,8 @@ export default function InfoScreen({ navigation }) {
           />
 
           <View style={styles.Infoheadercontainer}>
-
             <Text style={styles.Infoheader}>Our Tuckshop</Text>
           </View>
-
 
 
           <Image style={styles.image5}
@@ -78,9 +81,13 @@ export default function InfoScreen({ navigation }) {
             <Text style={styles.faqanswer}>Online or can come before school and knock on the window. Pre-orders must be before 8.30am. </Text>
           </View>
 
+
           <View>
+
             <Text style={styles.updatesheader}>NEWSFEED</Text>
+
             <View style={styles.updatescontainer}>
+
               <ScrollView>
 
                 {updates.map((updates) => {
@@ -96,11 +103,14 @@ export default function InfoScreen({ navigation }) {
                   );
                 })}
               </ScrollView>
+              
             </View>
+
           </View> 
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+
+        </View>
+    </ScrollView>
+</SafeAreaView>
    
 
   );

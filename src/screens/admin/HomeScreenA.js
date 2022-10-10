@@ -5,12 +5,15 @@ export default function HomeScreenA({ navigation }) {
 
 
   return (
-    <SafeAreaView style={styles.container}>
+<SafeAreaView style={styles.container}>
+
+
       <View style={styles.div}>
         <TouchableOpacity onPress={() => navigation.replace('Home')} >
           <Text style={styles.loginbtn}>Logout</Text>
         </TouchableOpacity>
       </View>
+
 
       <View style={styles.div1}>
 
@@ -21,9 +24,11 @@ export default function HomeScreenA({ navigation }) {
           Welcome,  Admin.
         </Text>
 
-
       </View>
+
+
       <View style={styles.div2}>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('AdminMenu')}>
@@ -36,7 +41,10 @@ export default function HomeScreenA({ navigation }) {
           onPress={() => navigation.navigate('AdminInfo')}>
           <Text style={styles.btntexta}>Update Newsfeed</Text>
         </TouchableOpacity>
+        
       </View>
-    </SafeAreaView>
+
+
+</SafeAreaView>
   );
 }
