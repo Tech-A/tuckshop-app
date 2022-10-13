@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { grey100 } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 export default StyleSheet.create({
 
@@ -18,9 +19,9 @@ export default StyleSheet.create({
   },
   loginbtn: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 20,
     marginRight: 10,
-    marginTop: 10,
+    marginTop: 20,
     padding: 20,
   },
   div1: {
@@ -102,11 +103,24 @@ export default StyleSheet.create({
     color: 'black',
     backgroundColor: '#fff',
   },
- tabtext: {
-  fontSize: 13,
- },
+  tabtext: {
+    fontSize: 13,
+  },
 
   //admin 
+  menuhelpcontainerA: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+
+  },
+  menuhelp: {
+    fontSize: 20,
+    color: 'grey',
+    paddingLeft: 15,
+  },
+  icon2: {
+    alignSelf: 'flex-start',
+  },
   menucontainerA: {
     flex: 1,
     height: '100%',
@@ -117,6 +131,7 @@ export default StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     padding: 10,
+    paddingTop: 0,
   },
   menutitleA: {
     fontSize: 50,
@@ -145,9 +160,9 @@ export default StyleSheet.create({
   },
   categorytext: {
     fontSize: 15,
-    marginLeft:10,
-  }, 
-  categorytextcategory:{
+    marginLeft: 10,
+  },
+  categorytextcategory: {
     marginLeft: 10,
   },
   editbutton: {
@@ -202,8 +217,73 @@ export default StyleSheet.create({
   buttontext: {
     textAlign: 'center',
   },
+  //help
+  helpcontainer: {
+    flex: 1,
+    marginTop: 50,
+    margin: 10,
+    height: '100%',
+  },
+  helpheadercontainer: {
+    justifyContent: "center",
+  },
+  backheader: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 18,
 
-  
+  },
+  backbutton: {
+    height: 40,
+    width: 65,
+    backgroundColor: 'lightblue',
+    marginLeft: 15,
+    justifyContent: 'center',
+  },
+  helpheader: {
+    color: "black",
+    fontSize: 50,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    textAlign: 'left',
+    padding: 10,
+    paddingLeft: 10,
+  },
+  HelpText: {
+    fontSize: 15,
+    marginBottom: 10,
+  },
+  HelpText2: {
+    fontSize: 15,
+    marginLeft: 15,
+    padding: 10,
+  },
+  helpheader2Red: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'red',
+    marginTop: 10,
+  },
+
+  helpheader2Green: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'green',
+  },
+  helpheader2Blue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'blue',
+    marginTop: 10,
+  },
+  HelpTextcontainer: {
+    padding: 10,
+    width: '100%',
+    marginTop: 5,
+    marginBottom: 20,
+  },
+
+
 
   //Login Screen
   logincontainer: {
@@ -256,10 +336,10 @@ export default StyleSheet.create({
     marginBottom: 30,
 
   },
-  
+
 
   //Info Screen 
-  icon:{
+  icon: {
     alignSelf: "flex-start",
     margin: 10,
     marginTop: 30,
@@ -269,10 +349,11 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    padding: 10,
   },
   image5: {
     height: 200,
-    width: '100%',
+    width: '95%',
     marginBottom: 10,
     justifyContent: "center",
   },
@@ -341,10 +422,16 @@ export default StyleSheet.create({
     borderColor: "grey",
     padding: 20,
   },
-
+  updatessubheader:{
+    fontSize: 15,
+    marginLeft: 10,
+  },
+  updatetext:{
+    fontWeight: "bold",
+    color: 'darkblue',
+  },
   //admin 
   InfocontainerA: {
-   
     backgroundColor: "#fff",
     padding: 10,
     alignItems: "center",
@@ -364,7 +451,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 50,
   },
- 
+
   createupdatebutton: {
     width: '100%',
     padding: 10,
