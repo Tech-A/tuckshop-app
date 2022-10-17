@@ -200,6 +200,11 @@ export default function MenuScreenA({ navigation }) {
                                             onChangeText={(category) => {
                                                 setNewCategory(category);
                                             }} />
+                                            
+                                        <Text style={styles.categorytext}>CATEGORIES: (lowercase)</Text>
+                                        <Text style={styles.categorytextcategory}>- main</Text>
+                                        <Text style={styles.categorytextcategory}>- sweets</Text>
+                                        <Text style={styles.categorytextcategory}>- drinks</Text>
 
                                         <TouchableOpacity onPress={createUser} style={styles.createbutton}><Text style={styles.buttontext}>Add Item</Text></TouchableOpacity>
                                     </View>

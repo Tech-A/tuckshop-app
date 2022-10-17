@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, SafeAreaView } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
 import styles from '../../styles';
 import { db2 } from '../../firebase-config';

@@ -199,7 +199,8 @@ export default StyleSheet.create({
   },
   create: {
     width: '100%',
-    padding: 20,
+    padding: 7,
+    paddingBottom: 15,
     backgroundColor: 'white',
     marginLeft: 20,
     marginRight: 20,
