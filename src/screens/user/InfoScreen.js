@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, SafeAreaView } from 'react-native';
-import { collection, getDocs } from 'firebase/firestore';
-import styles from '../../styles';
-import { db2 } from '../../firebase-config';
 import { ScrollView } from "react-native-gesture-handler";
 import { IconButton } from 'react-native-paper';
+import { collection, getDocs } from 'firebase/firestore';
+import { db2 } from '../../firebase-config';
+import styles from '../../styles';
 
 
 
 export default function InfoScreen({ navigation }) {
-
-  const updatesCollectionRef = collection(db2, "updates") // Gets update database from firebase
-
+  
+  // Gets update database from firebase
+  const updatesCollectionRef = collection(db2, "updates") 
+  
   const [updates, setUpdates] = useState([]);
 
   useEffect(() => {
     const getUpdates = async () => {
-      const data = await getDocs(updatesCollectionRef); // Displays data from updates database in firebase
+      
+      // Displays data from updates database in firebase
+      const data = await getDocs(updatesCollectionRef); 
+      
       setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -45,7 +49,7 @@ export default function InfoScreen({ navigation }) {
 
           <Image style={styles.image5}
             source={{
-              uri: 'https://www.stmargarets.qld.edu.au/Images/UserUploadedImages/520/tuckshop%20menu.jpg',
+              uri: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
             }}
           />
 
@@ -84,7 +88,7 @@ export default function InfoScreen({ navigation }) {
 
           <View>
 
-            <Text style={styles.updatesheader}>NEWSFEED</Text>
+            <Text style={styles.updatesheader}>UPDATES</Text>
             <Text style={styles.updatessubheader}>See the latest news from the tuckshop!</Text>
             <View style={styles.updatescontainer}>
 

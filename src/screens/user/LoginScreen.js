@@ -1,32 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import styles from '../../styles';
-import { auth } from '../../firebase-config';
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 import { IconButton } from 'react-native-paper';
-
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { auth } from '../../firebase-config';
+import styles from '../../styles';
 
 
 export default function LoginScreen({ navigation }) {
 
-  // sets login email and password variables
+  // Email and password for login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  
+  // User state: User is not logged in
+  const [user, setUser] = useState({}); 
 
-  const [user, setUser] = useState({}); // Sets user state to be null/nothing (not logged in)
-
+  // User state: User is logged in
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser); // Sets user to be current user (logged in user)
+    setUser(currentUser); 
   });
 
-  //Signs user in with stored email and password in firebase authentication
+  // Sign user in with stored email and password in firebase authentication
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -34,10 +29,12 @@ export default function LoginScreen({ navigation }) {
         loginEmail,
         loginPassword
       );
+      // Now redirect logged in user to admin screens
       navigation.navigate('AdminHome');
-      // redirect logged in user to admin screens
-    } catch (error) {
-      alert(error.message); // Response to wrong details
+      
+    } // Response to wrong details
+    catch (error) {
+    alert(error.message); 
     }
   };
 
@@ -93,4 +90,3 @@ export default function LoginScreen({ navigation }) {
     </View>
   );
 }
-

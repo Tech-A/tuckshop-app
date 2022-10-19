@@ -1,56 +1,79 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
-import styles from '../../styles';
-import { db2 } from '../../firebase-config';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Modal, Portal, Provider, IconButton } from 'react-native-paper';
 import { Input } from 'react-native-elements';
+import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db2 } from '../../firebase-config';
+import styles from '../../styles';
 
 
 export default function InfoScreenA({ navigation }) {
   
-  //Modal
+  // Modal
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  //Modal styling
+  
+  // Styles the modal
   const containerStyle = { backgroundColor: 'white', padding: 20 };
 
+  // Get update database from firebase
+  const updatesCollectionRef = collection(db2, "updates") 
 
-  const updatesCollectionRef = collection(db2, "updates") // Gets update database from firebase
 
-
-  // Sets variables for create function
+  // Set variables for create function
   const [newUpdate, setNewUpdate] = useState("");
   const [newDate, setNewDate] = useState("");
 
   const [updates, setUpdates] = useState([]);
 
-  // Create function
+
+
+  // Add an update
   const createUser = async () => {
-    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate });  // Adds data to firebase
+    // First, add data to firebase
+    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate });  
     alert("update successfully added! ");
-    navigation.replace('AdminInfo'); // Refreshes with updated information
+    // Refresh page with updated information
+    navigation.replace('AdminInfo'); 
   };
 
+
+
+  // Delete update
+  const deleteUser = async (id) => {
+    // the data that will be changed
+    const userDoc = doc(db2, "updates", id); 
+    // delete data from firebase
+    await deleteDoc(userDoc); 
+    alert("item successfully removed.");
+    //Reloads with updated information
+    navigation.replace('AdminInfo'); 
+};
+
+
+
+
+// Displays data from updates database in firebase
   useEffect(() => {
     const getUpdates = async () => {
-      const data = await getDocs(updatesCollectionRef); // Displays data from updates database in firebase
+      const data = await getDocs(updatesCollectionRef); 
       setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getUpdates();
   }, []);
 
+  
   return (
 <Provider>
     <SafeAreaView>
-
+  <ScrollView>
       <View style={styles.InfocontainerA}>
 
-        <ScrollView>
+      
           <View style={styles.InfoheadercontainerA}>
             <IconButton
               icon="home"
@@ -62,7 +85,7 @@ export default function InfoScreenA({ navigation }) {
 
 
 
-          <View> 
+          <View style={styles.newsfeedheading}> 
             <Text style={styles.updatesheader}>NEWSFEED</Text>
             <View style={styles.addupdatecontainer}>
 
@@ -109,8 +132,17 @@ export default function InfoScreenA({ navigation }) {
                     <Text style={styles.updatetext}>{updates.update}</Text>
                     <Text>Date updated: {updates.date}</Text>
 
-                  </View>
+                  
+                  <IconButton
+              icon="delete"
+              size={25}
+              style={styles.updatedelbutton}
+              onPress={() => { deleteUser(updates.id) }}
+            />
+                   
+                 
 
+                  </View>
                 );
               })}
 
@@ -118,8 +150,9 @@ export default function InfoScreenA({ navigation }) {
           </View>
 
 
-        </ScrollView>
+        
       </View>
+      </ScrollView>
     </SafeAreaView>
    </Provider>
   );

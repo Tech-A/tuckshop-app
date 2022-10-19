@@ -10,54 +10,65 @@ import { IconButton } from 'react-native-paper';
 
 
 export default function MenuScreen({ navigation }) {
-    
-    const menuCollectionRef = collection(db1, "menu"); // Gets menu database from firebase
 
-    const [currentTab, setCurrentTab] = useState('all'); // Initially displays all menu items
+    // Gets menu database from firebase
+    const menuCollectionRef = collection(db1, "menu"); 
+    
+    // First shows all menu items
+    const [currentTab, setCurrentTab] = useState('all'); 
+    // Menu item categories
     const [menu, setMenu] = useState({
         main: [],
         drinks: [],
         sweets: [],
         all: [],
-    }); // states menu item categories
+    }); 
 
     useEffect(() => {
         const getMenu = async () => {
-            const data = await getDocs(menuCollectionRef); // Using menu items from menu collection in firebase
+            // Using menu items from menu collection in firebase
+            const data = await getDocs(menuCollectionRef); 
+            // Categories
             const menuItems = {
                 main: [],
                 drinks: [],
                 sweets: [],
                 all: [],
-            }; // menu item categories 
-
-
+            }; 
+            
+            //if category name is called, then data under that category will be pushed/shown
             data.docs.forEach((doc) => {
+
+                // Main menu items
                 if (doc.data().category === 'main') {
                     menuItems.main.push({
                         ...doc.data(),
                         id: doc.id
-                    }); //if category 'main' is called, then data under 'main' will be pushed/shown
+                    }); 
 
                 }
 
+                // Drinks
                 if (doc.data().category === 'drinks') {
                     menuItems.drinks.push({
                         ...doc.data(),
                         id: doc.id
-                    }); //if category 'drinks' is called, then data under 'drinks' will be pushed/shown
+                    }); 
                 }
+
+                // Sweets
                 if (doc.data().category === 'sweets') {
                     menuItems.sweets.push({
                         ...doc.data(),
                         id: doc.id
-                    }); //if category 'sweets' is called, then data under 'sweets' will be pushed/shown
+                    }); 
                 }
 
+                // All
                 menuItems.all.push({
                     ...doc.data(),
                     id: doc.id
-                }); // when category 'all' is called, then push display all menu items
+                }); 
 
             })
             setMenu(menuItems);
@@ -69,32 +80,23 @@ export default function MenuScreen({ navigation }) {
 
 
     if (!menu.all) return null;
-
-    let currentItems = []; // menu shows only current items
-
-
+    
+    // Show only current items on menu
+    let currentItems = []; 
+    
+    // Show the current items when tab is pressed. 
     if (currentTab === 'all') {
         currentItems = menu.all;
-    } // if current tab is 'all' or 'all' tab is pressed, menu shows all data.
-
-
-
+    } 
     if (currentTab === 'main') {
         currentItems = menu.main;
-    } // if current tab is 'main', menu only shows data under 'main'.
-
-
-
+    } 
     if (currentTab === 'drinks') {
         currentItems = menu.drinks;
-    } // if current tab is 'drinks', menu only shows data under 'drinks'.
-
-
-
+    } 
     if (currentTab === 'sweets') {
         currentItems = menu.sweets;
-    } // if current tab is 'sweets', menu only shows data under 'sweets'.
-
+    } 
 
 
 

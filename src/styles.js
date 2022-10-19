@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -106,7 +106,7 @@ export default StyleSheet.create({
     fontSize: 13,
   },
 
-  //admin 
+  // Admin 
   menuhelpcontainerA: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
@@ -349,14 +349,13 @@ export default StyleSheet.create({
   Infocontainer: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
     padding: 10,
   },
   image5: {
     height: 200,
     width: '95%',
     marginBottom: 10,
-    justifyContent: "center",
+    alignSelf: "center",
   },
   Infoheadercontainer: {
     justifyContent: "center",
@@ -434,13 +433,15 @@ export default StyleSheet.create({
   //admin 
   InfocontainerA: {
     backgroundColor: "#fff",
-    padding: 10,
-    alignItems: "center",
+    padding: 15,
     height: '100%',
   },
   InfoheadercontainerA: {
     justifyContent: "center",
     padding: 5,
+  },
+  newsfeedheading: {
+    justifyContent: "flex-start",
   },
   addupdatecontainer: {
     padding: 10,
@@ -462,8 +463,8 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   addupdate: {
-    color: 'lightblue',
-    fontSize: 15,
+    color: 'green',
+    fontSize: 18,
     textDecorationLine: 'underline'
   },
   home_button: {
@@ -473,5 +474,10 @@ export default StyleSheet.create({
     color: 'black',
     width: 100,
     textAlign: 'center',
+  },
+ 
+  updatedelbutton: {
+    padding: 10,
+    alignSelf: "flex-end",
   },
 });

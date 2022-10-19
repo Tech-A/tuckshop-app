@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text,  TouchableOpacity} from 'react-native';
-import styles from '../../styles';
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import styles from '../../styles';
+
 
 export default function MenuHelp({ navigation }) {
 return (
