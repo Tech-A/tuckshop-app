@@ -9,17 +9,25 @@ import styles from '../../styles';
 
 export default function LoginScreen({ navigation }) {
 
+
   // Email and password for login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   
+
+
+
   // User state: User is not logged in
   const [user, setUser] = useState({}); 
+
 
   // User state: User is logged in
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser); 
   });
+
+
+
 
   // Sign user in with stored email and password in firebase authentication
   const login = async () => {
@@ -29,6 +37,7 @@ export default function LoginScreen({ navigation }) {
         loginEmail,
         loginPassword
       );
+
       // Now redirect logged in user to admin screens
       navigation.navigate('AdminHome');
       

@@ -16,8 +16,10 @@ export default function InfoScreenA({ navigation }) {
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   
+
   // Styles the modal
   const containerStyle = { backgroundColor: 'white', padding: 20 };
+
 
   // Get update database from firebase
   const updatesCollectionRef = collection(db2, "updates") 
@@ -33,30 +35,43 @@ export default function InfoScreenA({ navigation }) {
 
   // Add an update
   const createUser = async () => {
+
+
     // First, add data to firebase
-    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate });  
+    await addDoc(updatesCollectionRef, { update: newUpdate, date: newDate }); 
+
     alert("update successfully added! ");
+
     // Refresh page with updated information
     navigation.replace('AdminInfo'); 
+
+
   };
 
 
 
   // Delete update
   const deleteUser = async (id) => {
+
+
     // the data that will be changed
     const userDoc = doc(db2, "updates", id); 
+
     // delete data from firebase
     await deleteDoc(userDoc); 
+
     alert("item successfully removed.");
+
     //Reloads with updated information
     navigation.replace('AdminInfo'); 
+
+
 };
 
 
 
 
-// Displays data from updates database in firebase
+// Gets data from updates database in firebase
   useEffect(() => {
     const getUpdates = async () => {
       const data = await getDocs(updatesCollectionRef); 
@@ -65,6 +80,7 @@ export default function InfoScreenA({ navigation }) {
 
     getUpdates();
   }, []);
+
 
   
   return (

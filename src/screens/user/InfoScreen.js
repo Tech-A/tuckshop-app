@@ -15,18 +15,19 @@ export default function InfoScreen({ navigation }) {
   
   const [updates, setUpdates] = useState([]);
 
+
+   // Gets data from updates database in firebase
   useEffect(() => {
     const getUpdates = async () => {
-      
-      // Displays data from updates database in firebase
       const data = await getDocs(updatesCollectionRef); 
-      
       setUpdates(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getUpdates();
   }, []);
 
+
+  
   return (
 
     

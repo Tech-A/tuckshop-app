@@ -25,50 +25,81 @@ export default function MenuScreenA({ navigation }) {
     const [newCost, setNewCost] = useState(0);
     const [newCategory, setNewCategory] = useState("");
 
+
     // Create function adds item to the menu database
     const createUser = async () => {
-        await addDoc(menuCollectionRef, { food: newFood, cost: Number(newCost), category: newCategory }); // adds data to firebase
+
+
+        // adds data to firebase
+        await addDoc(menuCollectionRef, { food: newFood, cost: Number(newCost), category: newCategory }); 
         alert("item successfully added!");
+        
         // Now reload with updated information
         navigation.replace('AdminMenu'); 
+
+
     };
+
+
 
     // Delete item from menu database
     const deleteUser = async (id) => {
+
         // The data that will be changed
         const userDoc = doc(db1, "menu", id); 
+
+
         // Delete data from firebase
         await deleteDoc(userDoc); 
         alert("item successfully removed.");
+        
         // Now reload with updated information
         navigation.replace('AdminMenu'); 
+
+
     };
 
 
     // Increase price of menu item
     const increaseCost = async (id, cost) => {
+
+
         const userDoc = doc(db1, "menu", id);
         // Increase cost of price of data from menu database by 1
+
         const newFields = { cost: cost + 1 }; 
         // Update data in firebase
+
+
         await updateDoc(userDoc, newFields); 
         alert("cost successfully increased!");
+        
         // Now reload with updated information
         navigation.replace('AdminMenu'); 
+
+
     };
 
 
     // Decrease price of menu item
     const decreaseCost = async (id, cost) => {
+
+
         const userDoc = doc(db1, "menu", id);
+
         // Decrease cost of price of data from menu database by 1
         const newFields = { cost: cost - 1 }; 
+
+
         // Updates data in firebase
         await updateDoc(userDoc, newFields); 
         alert("cost successfully decreased!");
+        
+
         // Now reload with updated information
         navigation.replace('AdminMenu'); 
     };
+
 
 
 
@@ -80,14 +111,18 @@ export default function MenuScreenA({ navigation }) {
         sweets: [],
         all: [],
     }]);
+
     // Gets menu database from firebase
     const menuCollectionRef = collection(db1, "menu"); 
 
 
+
     useEffect(() => {
         const getMenu = async () => {
+
             // Using menu items from menu collection in firebase
             const data = await getDocs(menuCollectionRef);
+
             // Categories 
             const menuItems = {
                 main: [],
@@ -96,8 +131,10 @@ export default function MenuScreenA({ navigation }) {
                 all: [],
             }; 
 
-            //if category name is called, then data under that category will be pushed/shown
+
+            //if category name is called, then data under that category will be shown
             data.docs.forEach((doc) => {
+
 
                 // Main menu items
                 if (doc.data().category === 'main') {
@@ -143,9 +180,11 @@ export default function MenuScreenA({ navigation }) {
 
     if (!menu.all) return null;
     
+    
     // Show only current items on menu
     let currentItems = []; 
     
+
     // Show the current items when tab is pressed. 
     if (currentTab === 'all') {
         currentItems = menu.all;
